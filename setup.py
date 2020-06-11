@@ -14,7 +14,7 @@ setuptools.setup(
     long_description=project_dir.joinpath("README.rst").read_text(encoding="utf-8"),
     keywords=["python", "weather"],
     author="",
-    url="https://github.com/clintecker/python-supercell",
+    url="https://github.com/clintecker/supercell",
     packages=setuptools.find_packages("src"),
     package_dir={"": "src"},
     # pip 9.0+ will inspect this field when installing to help users install a

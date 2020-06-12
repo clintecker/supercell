@@ -15,7 +15,7 @@ setuptools.setup(
     keywords=["python", "weather"],
     author="",
     url="https://github.com/clintecker/supercell",
-    packages="supercell",
+    packages=["supercell",],
     package_dir={"supercell": "src"},
     # pip 9.0+ will inspect this field when installing to help users install a
     # compatible version of the library for their Python version.

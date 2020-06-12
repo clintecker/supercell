@@ -1,7 +1,11 @@
 #!/usr/bin/env python3
 
+# Standard Library
+from glob import glob
+from os.path import basename, splitext
 from pathlib import Path
 
+# Third Party Code
 import setuptools
 
 project_dir = Path(__file__).parent
@@ -15,8 +19,9 @@ setuptools.setup(
     keywords=["python", "weather"],
     author="",
     url="https://github.com/clintecker/supercell",
-    packages=["supercell",],
-    package_dir={"supercell": "src"},
+    packages=setuptools.find_packages("src"),
+    package_dir={"": "src"},
+    py_modules=[splitext(basename(path))[0] for path in glob("src/*.py")],
     # pip 9.0+ will inspect this field when installing to help users install a
     # compatible version of the library for their Python version.
     python_requires=">=3.6",

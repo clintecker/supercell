@@ -1,8 +1,6 @@
 #!/usr/bin/env python3
 
 # Standard Library
-from glob import glob
-from os.path import basename, splitext
 from pathlib import Path
 
 # Third Party Code
@@ -11,15 +9,16 @@ import setuptools
 project_dir = Path(__file__).parent
 
 setuptools.setup(
-    name="supercell",
+    name="python-supercell",
     version="1.0.0",
     description="A library for working with various sources of weather information.",
     # Allow UTF-8 characters in README with encoding argument.
     long_description=project_dir.joinpath("README.rst").read_text(encoding="utf-8"),
     keywords=["python", "weather"],
-    author="",
+    author="Clint Ecker",
+    author_email="me@clintecker.com",
     url="https://github.com/clintecker/supercell",
-    packages=["supercell",],
+    packages=["supercell"],
     # pip 9.0+ will inspect this field when installing to help users install a
     # compatible version of the library for their Python version.
     python_requires=">=3.6",
@@ -38,7 +37,6 @@ setuptools.setup(
     install_requires=project_dir.joinpath("requirements.txt").read_text().split("\n"),
     zip_safe=False,
     license="MIT",
-    license_files=["LICENSE"],
     classifiers=[
         "Development Status :: 4 - Beta",
         "Intended Audience :: Developers",

@@ -12,24 +12,23 @@ from dateutil.tz import tzlocal
 import requests
 
 # Supercell Code
-from supercell import (  # noqa: F401
-    goes,
-    highways,
-    weatherlink
-)
-from supercell.models import (
-    Forecast,
-    Observation
-)
+from supercell import goes, highways, weatherlink  # noqa: F401
+from supercell.models import Forecast, Observation
 
 VERSION = "1.0.0"
-WEATHER_URL = "https://api.weather.com/v2/pws/observations/current?stationId=" \
-              "{station_id}&format=json&units=e&apiKey={api_key}"
-FORECAST_URL = "https://api.weather.com/v3/wx/forecast/daily/5day?geocode=" \
-               "{latitude},{longitude}&format=json&units=e&apiKey={api_key}" \
-               "&language=en-US"
-NEAR_URL = "https://api.weather.com/v3/location/near?format=json&geocode=" \
-           "{latitude},{longitude}&product=postal&apiKey={api_key}"
+WEATHER_URL = (
+    "https://api.weather.com/v2/pws/observations/current?stationId="
+    "{station_id}&format=json&units=e&apiKey={api_key}"
+)
+FORECAST_URL = (
+    "https://api.weather.com/v3/wx/forecast/daily/5day?geocode="
+    "{latitude},{longitude}&format=json&units=e&apiKey={api_key}"
+    "&language=en-US"
+)
+NEAR_URL = (
+    "https://api.weather.com/v3/location/near?format=json&geocode="
+    "{latitude},{longitude}&product=postal&apiKey={api_key}"
+)
 
 logger = logging.getLogger(__name__)
 
@@ -39,11 +38,7 @@ def get_nearby(longitude: float, latitude: float, api_key: str) -> Dict:
     Get a dictionary of nearby locations.
     """
     near_response = requests.get(
-        NEAR_URL.format(
-            latitude=latitude,
-            longitude=longitude,
-            api_key=api_key
-        )
+        NEAR_URL.format(latitude=latitude, longitude=longitude, api_key=api_key)
     )
     return near_response.json()
 
@@ -53,11 +48,7 @@ def get_forecasts(longitude: float, latitude: float, api_key: str) -> List[Forec
     Gets a list of forecasts for a location.
     """
     forecast_response = requests.get(
-        FORECAST_URL.format(
-            latitude=latitude,
-            longitude=longitude,
-            api_key=api_key
-        )
+        FORECAST_URL.format(latitude=latitude, longitude=longitude, api_key=api_key)
     )
     forecasts = []
     forecast_data = forecast_response.json()
@@ -72,7 +63,8 @@ def get_forecasts(longitude: float, latitude: float, api_key: str) -> List[Forec
 
         if forecast_for_utc_offset:
             forecast_for_utc_offset_seconds = int(
-                forecast_for_utc_offset.total_seconds())
+                forecast_for_utc_offset.total_seconds()
+            )
         else:
             forecast_for_utc_offset_seconds = 0
 
@@ -99,10 +91,7 @@ def get_station_weather(station_id: str, api_key: str) -> Observation:
     Obtains an observation from a Weather Station.
     """
     weather_response = requests.get(
-        WEATHER_URL.format(
-            station_id=station_id,
-            api_key=api_key
-        )
+        WEATHER_URL.format(station_id=station_id, api_key=api_key)
     )
     return Observation(
         latitude=weather_response.json()["observations"][0]["lat"],
@@ -113,4 +102,5 @@ def get_station_weather(station_id: str, api_key: str) -> Observation:
         windspeed=weather_response.json()["observations"][0]["imperial"]["windSpeed"],
         pressure=weather_response.json()["observations"][0]["imperial"]["pressure"],
         windgust=weather_response.json()["observations"][0]["imperial"]["windGust"],
-        observed_at=weather_response.json()["observations"][0]["obsTimeUtc"])
+        observed_at_str=weather_response.json()["observations"][0]["obsTimeUtc"],
+    )

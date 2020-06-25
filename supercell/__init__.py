@@ -12,7 +12,6 @@ from dateutil.tz import tzlocal
 import requests
 
 # Supercell Code
-from supercell import goes, highways, weatherlink  # noqa: F401
 from supercell.models import Forecast, Observation
 
 VERSION = "1.0.0"

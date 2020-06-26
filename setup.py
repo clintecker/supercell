@@ -10,7 +10,7 @@ project_dir = Path(__file__).parent
 
 setuptools.setup(
     name="python-supercell",
-    version="1.0.0",
+    version="1.0.1",
     description="A library for working with various sources of weather information.",
     # Allow UTF-8 characters in README with encoding argument.
     long_description=project_dir.joinpath("README.rst").read_text(encoding="utf-8"),

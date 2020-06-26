@@ -2,7 +2,9 @@
 Supercell
 #########
 
-Description of Supercell.
+Supercell is a library for pulling various kinds of weather, satellite,  and highway data from various APIs.
+
+Currently all of the highway conditions code is specific to Colorado where I am currently located.
 
 ************
 Installation

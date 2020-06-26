@@ -18,7 +18,12 @@ setuptools.setup(
     author="Clint Ecker",
     author_email="me@clintecker.com",
     url="https://github.com/clintecker/supercell",
-    packages=["supercell"],
+    packages=[
+        "supercell",
+        "supercell.goes",
+        "supercell.highways",
+        "supercell.weatherlink",
+    ],
     # pip 9.0+ will inspect this field when installing to help users install a
     # compatible version of the library for their Python version.
     python_requires=">=3.6",

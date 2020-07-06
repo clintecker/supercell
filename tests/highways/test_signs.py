@@ -11,8 +11,7 @@ import unittest
 import responses
 
 # Supercell Code
-from tests.context import \
-    supercell  # noqa: I202
+import supercell
 
 
 class SupercellHighwaySignsTests(unittest.TestCase):
@@ -21,20 +20,11 @@ class SupercellHighwaySignsTests(unittest.TestCase):
         responses.add(
             responses.GET,
             "https://cotrip.org/device/getDMS.do",
-            json={
-                "DMSDetails": {
-                    "DMS": [
-                        {}, {}, {}
-                    ]
-                }
-            },
-            status=200
+            json={"DMSDetails": {"DMS": [{}, {}, {}]}},
+            status=200,
         )
         all_signs = supercell.highways.signs.get_all_signs()
-        self.assertEqual(
-            3,
-            len(all_signs)
-        )
+        self.assertEqual(3, len(all_signs))
 
     @responses.activate
     def test_get_all_signs_bad_response(self):
@@ -42,7 +32,7 @@ class SupercellHighwaySignsTests(unittest.TestCase):
             responses.GET,
             "https://cotrip.org/device/getDMS.do",
             status=500,
-            body="Server Error!"
+            body="Server Error!",
         )
         with self.assertRaises(Exception):
             supercell.highways.signs.get_all_signs()
@@ -55,31 +45,18 @@ class SupercellHighwaySignsTests(unittest.TestCase):
             json={
                 "DMSDetails": {
                     "DMS": [
-                        {
-                            "DMSId": "XXXX",
-                            "MessageImage": "/bloop/imageXXXX.jpg",
-                        },
-                        {
-                            "DMSId": "YYYY",
-                            "MessageImage": "/bloop/imageYYYY.jpg",
-                        },
-                        {
-                            "DMSId": "ZZZZ",
-                            "MessageImage": "/bloop/imageZZZZ.jpg",
-                        }
+                        {"DMSId": "XXXX", "MessageImage": "/bloop/imageXXXX.jpg",},
+                        {"DMSId": "YYYY", "MessageImage": "/bloop/imageYYYY.jpg",},
+                        {"DMSId": "ZZZZ", "MessageImage": "/bloop/imageZZZZ.jpg",},
                     ]
                 }
             },
-            status=200
+            status=200,
         )
         message_url = supercell.highways.signs.get_sign_message(
-            dms_id="XXXX",
-            signs=None
+            dms_id="XXXX", signs=None
         )
-        self.assertEqual(
-            "https://i.cotrip.org/bloop/imageXXXX.jpg",
-            message_url
-        )
+        self.assertEqual("https://i.cotrip.org/bloop/imageXXXX.jpg", message_url)
 
         with self.assertRaises(ValueError):
             supercell.highways.signs.get_sign_message("AAAA")
@@ -87,24 +64,13 @@ class SupercellHighwaySignsTests(unittest.TestCase):
         sign_url = supercell.highways.signs.get_sign_message(
             "QQQQ",
             signs=[
-                {
-                    "DMSId": "QQQQ",
-                    "MessageImage": "/bloop/imageQQQQ.jpg",
-                },
-                {
-                    "DMSId": "YYYY",
-                    "MessageImage": "/bloop/imageYYYY.jpg",
-                },
-                {
-                    "DMSId": "ZZZZ",
-                    "MessageImage": "/bloop/imageZZZZ.jpg",
-                }
-            ])
-
-        self.assertEqual(
-            "https://i.cotrip.org/bloop/imageQQQQ.jpg",
-            sign_url
+                {"DMSId": "QQQQ", "MessageImage": "/bloop/imageQQQQ.jpg",},
+                {"DMSId": "YYYY", "MessageImage": "/bloop/imageYYYY.jpg",},
+                {"DMSId": "ZZZZ", "MessageImage": "/bloop/imageZZZZ.jpg",},
+            ],
         )
+
+        self.assertEqual("https://i.cotrip.org/bloop/imageQQQQ.jpg", sign_url)
 
     @responses.activate
     def test_fetch_sign_image(self):
@@ -114,22 +80,13 @@ class SupercellHighwaySignsTests(unittest.TestCase):
             json={
                 "DMSDetails": {
                     "DMS": [
-                        {
-                            "DMSId": "XXXX",
-                            "MessageImage": "/bloop/imageXXXX.jpg",
-                        },
-                        {
-                            "DMSId": "YYYY",
-                            "MessageImage": "/bloop/imageYYYY.jpg",
-                        },
-                        {
-                            "DMSId": "ZZZZ",
-                            "MessageImage": "/bloop/imageZZZZ.jpg",
-                        }
+                        {"DMSId": "XXXX", "MessageImage": "/bloop/imageXXXX.jpg",},
+                        {"DMSId": "YYYY", "MessageImage": "/bloop/imageYYYY.jpg",},
+                        {"DMSId": "ZZZZ", "MessageImage": "/bloop/imageZZZZ.jpg",},
                     ]
                 }
             },
-            status=200
+            status=200,
         )
 
         responses.add(
@@ -137,46 +94,28 @@ class SupercellHighwaySignsTests(unittest.TestCase):
             "https://i.cotrip.org/bloop/imageZZZZ.jpg",
             body=gzip.compress(b"JFIFXXXXX"),
             status=200,
-            headers={
-                "Content-Encoding": "gzip",
-                "Content-Type": "image/jpeg"
-            }
+            headers={"Content-Encoding": "gzip", "Content-Type": "image/jpeg"},
         )
 
         responses.add(
             responses.GET,
             "https://i.cotrip.org/bloop/imageYYYY.jpg",
             body="Server Error",
-            status=501
+            status=501,
         )
 
-        data = supercell.highways.signs.fetch_sign_image(
-            sign_id="ZZZZ",
-            all_signs=None
-        )
+        data = supercell.highways.signs.fetch_sign_image(sign_id="ZZZZ", all_signs=None)
 
-        self.assertEqual(
-            b"JFIFXXXXX",
-            data
-        )
+        self.assertEqual(b"JFIFXXXXX", data)
 
         with self.assertRaises(ValueError):
-            supercell.highways.signs.fetch_sign_image(
-                sign_id="YYYY",
-                all_signs=None
-            )
+            supercell.highways.signs.fetch_sign_image(sign_id="YYYY", all_signs=None)
 
     def test_store_sign_image(self):
         with tempfile.TemporaryDirectory() as d:
             p = Path(d, "bloop.jpg")
-            supercell.highways.signs.store_sign_image(
-                data=b"JFIFXXXXX",
-                local_path=p
-            )
-            self.assertEqual(
-                b"JFIFXXXXX",
-                p.read_bytes()
-            )
+            supercell.highways.signs.store_sign_image(data=b"JFIFXXXXX", local_path=p)
+            self.assertEqual(b"JFIFXXXXX", p.read_bytes())
 
     @responses.activate
     def test_main(self):
@@ -186,22 +125,13 @@ class SupercellHighwaySignsTests(unittest.TestCase):
             json={
                 "DMSDetails": {
                     "DMS": [
-                        {
-                            "DMSId": "XXXX",
-                            "MessageImage": "/bloop/imageXXXX.jpg",
-                        },
-                        {
-                            "DMSId": "YYYY",
-                            "MessageImage": "/bloop/imageYYYY.jpg",
-                        },
-                        {
-                            "DMSId": "ZZZZ",
-                            "MessageImage": "/bloop/imageZZZZ.jpg",
-                        }
+                        {"DMSId": "XXXX", "MessageImage": "/bloop/imageXXXX.jpg",},
+                        {"DMSId": "YYYY", "MessageImage": "/bloop/imageYYYY.jpg",},
+                        {"DMSId": "ZZZZ", "MessageImage": "/bloop/imageZZZZ.jpg",},
                     ]
                 }
             },
-            status=200
+            status=200,
         )
 
         responses.add(
@@ -209,10 +139,7 @@ class SupercellHighwaySignsTests(unittest.TestCase):
             "https://i.cotrip.org/bloop/imageZZZZ.jpg",
             body=gzip.compress(b"JFIFZZZZZ"),
             status=200,
-            headers={
-                "Content-Encoding": "gzip",
-                "Content-Type": "image/jpeg"
-            }
+            headers={"Content-Encoding": "gzip", "Content-Type": "image/jpeg"},
         )
 
         responses.add(
@@ -220,31 +147,48 @@ class SupercellHighwaySignsTests(unittest.TestCase):
             "https://i.cotrip.org/bloop/imageXXXX.jpg",
             body=gzip.compress(b"JFIFXXXXX"),
             status=200,
-            headers={
-                "Content-Encoding": "gzip",
-                "Content-Type": "image/jpeg"
-            }
+            headers={"Content-Encoding": "gzip", "Content-Type": "image/jpeg"},
         )
 
         responses.add(
             responses.GET,
             "https://i.cotrip.org/bloop/imageYYYY.jpg",
             body="Server Error",
-            status=501
+            status=501,
         )
 
         with tempfile.TemporaryDirectory() as d:
             supercell.highways.signs.main(
-                args=["--sign", "XXXX:nameX", "--sign", "ZZZZ:nameZ", "--directory", d])
+                args=["--sign", "XXXX:nameX", "--sign", "ZZZZ:nameZ", "--directory", d]
+            )
 
         with tempfile.TemporaryDirectory() as d:
             supercell.highways.signs.main(
-                args=["--sign", "YYYY:nameY", "--sign", "ZZZZ:nameZ", "--directory", d])
+                args=["--sign", "YYYY:nameY", "--sign", "ZZZZ:nameZ", "--directory", d]
+            )
 
         with tempfile.TemporaryDirectory() as d:
             supercell.highways.signs.main(
-                args=["--sign", "XXXX:nameX", "--sign", "ZZZZ:nameZ", "--directory", d, "--verbose"])
+                args=[
+                    "--sign",
+                    "XXXX:nameX",
+                    "--sign",
+                    "ZZZZ:nameZ",
+                    "--directory",
+                    d,
+                    "--verbose",
+                ]
+            )
 
         with tempfile.TemporaryDirectory() as d:
             supercell.highways.signs.main(
-                args=["--sign", "XXXX:nameX", "--sign", "ZZZZ:nameZ", "--directory", d, "--quiet"])
+                args=[
+                    "--sign",
+                    "XXXX:nameX",
+                    "--sign",
+                    "ZZZZ:nameZ",
+                    "--directory",
+                    d,
+                    "--quiet",
+                ]
+            )

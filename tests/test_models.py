@@ -7,7 +7,7 @@ import unittest
 from dateutil.tz import tzoffset, tzutc
 
 # Supercell Code
-from tests.context import supercell  # noqa: I202
+import supercell
 
 
 class SupercellForecastModelTestSuite(unittest.TestCase):

@@ -1,8 +1,8 @@
 init:
-	pip install -r requirements.txt
+	python setup.py develop
 
-init-dev:
-	pip install -r dev-requirements.txt
+init-dev: init
+	pip install supercell[test]
 
 testox:
 	tox

@@ -8,8 +8,7 @@ import unittest
 import responses
 
 # Supercell Code
-from tests.context import \
-    supercell  # noqa: I202
+import supercell
 
 
 class SupercellHighwayConditionsTestSuite(unittest.TestCase):
@@ -30,7 +29,7 @@ class SupercellHighwayConditionsTestSuite(unittest.TestCase):
                             "EndMileMarker": 99.5,
                             "RoadId": "WWWW",
                             "SpeedLimit": 85,
-                            "AverageSpeed": 80
+                            "AverageSpeed": 80,
                         },
                         {
                             "RoadName": "zzzz",
@@ -41,7 +40,7 @@ class SupercellHighwayConditionsTestSuite(unittest.TestCase):
                             "EndMileMarker": 101.5,
                             "RoadId": "WWWW",
                             "SpeedLimit": 85,
-                            "AverageSpeed": 83
+                            "AverageSpeed": 83,
                         },
                         {
                             "RoadName": "zzzz",
@@ -52,7 +51,7 @@ class SupercellHighwayConditionsTestSuite(unittest.TestCase):
                             "EndMileMarker": 105.5,
                             "RoadId": "WWWW",
                             "SpeedLimit": 85,
-                            "AverageSpeed": 81
+                            "AverageSpeed": 81,
                         },
                         {
                             "RoadName": "qqqq",
@@ -63,7 +62,7 @@ class SupercellHighwayConditionsTestSuite(unittest.TestCase):
                             "EndMileMarker": 105.5,
                             "RoadId": "DDDD",
                             "SpeedLimit": 75,
-                            "AverageSpeed": 76
+                            "AverageSpeed": 76,
                         },
                         {
                             "RoadName": "zzzz",
@@ -74,7 +73,7 @@ class SupercellHighwayConditionsTestSuite(unittest.TestCase):
                             "EndMileMarker": 205.5,
                             "RoadId": "DDDD",
                             "SpeedLimit": 80,
-                            "AverageSpeed": 78
+                            "AverageSpeed": 78,
                         },
                         {
                             "RoadName": "zzzz",
@@ -85,7 +84,7 @@ class SupercellHighwayConditionsTestSuite(unittest.TestCase):
                             "EndMileMarker": 209.5,
                             "RoadId": "DDDD",
                             "SpeedLimit": 80,
-                            "AverageSpeed": 79
+                            "AverageSpeed": 79,
                         },
                         {
                             "RoadName": "zzzz",
@@ -96,7 +95,7 @@ class SupercellHighwayConditionsTestSuite(unittest.TestCase):
                             "EndMileMarker": 97.5,
                             "RoadId": "WWWW",
                             "SpeedLimit": 85,
-                            "AverageSpeed": 80
+                            "AverageSpeed": 80,
                         },
                         {
                             "RoadName": "zzzz",
@@ -107,7 +106,7 @@ class SupercellHighwayConditionsTestSuite(unittest.TestCase):
                             "EndMileMarker": 101.5,
                             "RoadId": "WWWW",
                             "SpeedLimit": 85,
-                            "AverageSpeed": 84
+                            "AverageSpeed": 84,
                         },
                         {
                             "RoadName": "zzzz",
@@ -118,7 +117,7 @@ class SupercellHighwayConditionsTestSuite(unittest.TestCase):
                             "EndMileMarker": 101.5,
                             "RoadId": "WWWW",
                             "SpeedLimit": 85,
-                            "AverageSpeed": 80
+                            "AverageSpeed": 80,
                         },
                         {
                             "RoadName": "qqqq",
@@ -129,7 +128,7 @@ class SupercellHighwayConditionsTestSuite(unittest.TestCase):
                             "EndMileMarker": 101.5,
                             "RoadId": "DDDD",
                             "SpeedLimit": 75,
-                            "AverageSpeed": 74
+                            "AverageSpeed": 74,
                         },
                         {
                             "RoadName": "zzzz",
@@ -140,7 +139,7 @@ class SupercellHighwayConditionsTestSuite(unittest.TestCase):
                             "EndMileMarker": 199.5,
                             "RoadId": "DDDD",
                             "SpeedLimit": 80,
-                            "AverageSpeed": 54
+                            "AverageSpeed": 54,
                         },
                         {
                             "RoadName": "zzzz",
@@ -151,11 +150,11 @@ class SupercellHighwayConditionsTestSuite(unittest.TestCase):
                             "EndMileMarker": 205.5,
                             "RoadId": "DDDD",
                             "SpeedLimit": 80,
-                            "AverageSpeed": 79
-                        }
+                            "AverageSpeed": 79,
+                        },
                     ]
                 }
-            }
+            },
         )
         self.assertEqual(
             {
@@ -168,7 +167,7 @@ class SupercellHighwayConditionsTestSuite(unittest.TestCase):
                         "name": "AAAA",
                         "road_id": "WWWW",
                         "speed": 83,
-                        "start": 99.5
+                        "start": 99.5,
                     },
                     {
                         "direction": "N",
@@ -178,7 +177,7 @@ class SupercellHighwayConditionsTestSuite(unittest.TestCase):
                         "name": "AAAB",
                         "road_id": "WWWW",
                         "speed": 81,
-                        "start": 101.5
+                        "start": 101.5,
                     },
                     {
                         "direction": "N",
@@ -188,16 +187,16 @@ class SupercellHighwayConditionsTestSuite(unittest.TestCase):
                         "name": "ZZAB",
                         "road_id": "DDDD",
                         "speed": 78,
-                        "start": 199.5
-                    }
+                        "start": 199.5,
+                    },
                 ]
             },
             supercell.highways.conditions.get_segments(
                 road_name="zzzz",
                 start_mile_marker=100.25,
                 end_mile_marker=200.55,
-                direction="N"
-            )
+                direction="N",
+            ),
         )
 
         self.assertEqual(
@@ -211,7 +210,7 @@ class SupercellHighwayConditionsTestSuite(unittest.TestCase):
                         "name": "AAAA",
                         "road_id": "WWWW",
                         "speed": 83,
-                        "start": 99.5
+                        "start": 99.5,
                     },
                     {
                         "direction": "N",
@@ -221,7 +220,7 @@ class SupercellHighwayConditionsTestSuite(unittest.TestCase):
                         "name": "AAAB",
                         "road_id": "WWWW",
                         "speed": 81,
-                        "start": 101.5
+                        "start": 101.5,
                     },
                     {
                         "direction": "N",
@@ -231,8 +230,9 @@ class SupercellHighwayConditionsTestSuite(unittest.TestCase):
                         "name": "ZZAB",
                         "road_id": "DDDD",
                         "speed": 78,
-                        "start": 199.5
-                    }],
+                        "start": 199.5,
+                    },
+                ],
                 "S": [
                     {
                         "direction": "S",
@@ -242,7 +242,7 @@ class SupercellHighwayConditionsTestSuite(unittest.TestCase):
                         "name": "ZZAB",
                         "road_id": "DDDD",
                         "speed": 54,
-                        "start": 205.5
+                        "start": 205.5,
                     },
                     {
                         "direction": "S",
@@ -252,7 +252,7 @@ class SupercellHighwayConditionsTestSuite(unittest.TestCase):
                         "name": "AAAB",
                         "road_id": "WWWW",
                         "speed": 80,
-                        "start": 105.5
+                        "start": 105.5,
                     },
                     {
                         "direction": "S",
@@ -262,14 +262,13 @@ class SupercellHighwayConditionsTestSuite(unittest.TestCase):
                         "name": "AAAA",
                         "road_id": "WWWW",
                         "speed": 84,
-                        "start": 99.5
-                    }]
+                        "start": 99.5,
+                    },
+                ],
             },
             supercell.highways.conditions.get_segments(
-                road_name="zzzz",
-                start_mile_marker=100.25,
-                end_mile_marker=200.55,
-            )
+                road_name="zzzz", start_mile_marker=100.25, end_mile_marker=200.55,
+            ),
         )
 
     @responses.activate
@@ -288,7 +287,7 @@ class SupercellHighwayConditionsTestSuite(unittest.TestCase):
                             "RouteName": "XXXX",
                             "RoadId": 12345,
                             "RoadCondition": "Fire",
-                            "IsHazardousCondition": "true"
+                            "IsHazardousCondition": "true",
                         },
                         {
                             "WeatherRouteId": 2,
@@ -298,7 +297,7 @@ class SupercellHighwayConditionsTestSuite(unittest.TestCase):
                             "RouteName": "XXXX",
                             "RoadId": 12345,
                             "RoadCondition": "Dry",
-                            "IsHazardousCondition": "false"
+                            "IsHazardousCondition": "false",
                         },
                         {
                             "WeatherRouteId": 3,
@@ -308,7 +307,7 @@ class SupercellHighwayConditionsTestSuite(unittest.TestCase):
                             "RouteName": "XXXX",
                             "RoadId": 12345,
                             "RoadCondition": "Wet",
-                            "IsHazardousCondition": "false"
+                            "IsHazardousCondition": "false",
                         },
                         {
                             "WeatherRouteId": 4,
@@ -318,7 +317,7 @@ class SupercellHighwayConditionsTestSuite(unittest.TestCase):
                             "RouteName": "XXXX",
                             "RoadId": 12345,
                             "RoadCondition": "Windy",
-                            "IsHazardousCondition": "true"
+                            "IsHazardousCondition": "true",
                         },
                         {
                             "WeatherRouteId": 5,
@@ -328,50 +327,57 @@ class SupercellHighwayConditionsTestSuite(unittest.TestCase):
                             "RouteName": "XXXX",
                             "RoadId": 12345,
                             "RoadCondition": "Wet",
-                            "IsHazardousCondition": "true"
-                        }
+                            "IsHazardousCondition": "true",
+                        },
                     ]
                 }
-            }
+            },
         )
 
         conditions = supercell.highways.conditions.get_conditions(
-            road_name="XXXX",
-            start_mile_marker=100.0,
-            end_mile_marker=199.3
+            road_name="XXXX", start_mile_marker=100.0, end_mile_marker=199.3
         )
 
         self.assertEqual(
             [
-                {"conditions": "Dry",
-                 "end": 200.0,
-                 "id": 2,
-                 "is_dangerous": False,
-                 "name": "XXXX",
-                 "road_id": 12345,
-                 "start": 150.0},
-                {"conditions": "Wet",
-                 "end": 150.0,
-                 "id": 3,
-                 "is_dangerous": False,
-                 "name": "XXXX",
-                 "road_id": 12345,
-                 "start": 125.0},
-                {"conditions": "Windy",
-                 "end": 125.0,
-                 "id": 4,
-                 "is_dangerous": True,
-                 "name": "XXXX",
-                 "road_id": 12345,
-                 "start": 101.0},
-                {"conditions": "Wet",
-                 "end": 101.0,
-                 "id": 5,
-                 "is_dangerous": True,
-                 "name": "XXXX",
-                 "road_id": 12345,
-                 "start": 95.0}],
-            conditions
+                {
+                    "conditions": "Dry",
+                    "end": 200.0,
+                    "id": 2,
+                    "is_dangerous": False,
+                    "name": "XXXX",
+                    "road_id": 12345,
+                    "start": 150.0,
+                },
+                {
+                    "conditions": "Wet",
+                    "end": 150.0,
+                    "id": 3,
+                    "is_dangerous": False,
+                    "name": "XXXX",
+                    "road_id": 12345,
+                    "start": 125.0,
+                },
+                {
+                    "conditions": "Windy",
+                    "end": 125.0,
+                    "id": 4,
+                    "is_dangerous": True,
+                    "name": "XXXX",
+                    "road_id": 12345,
+                    "start": 101.0,
+                },
+                {
+                    "conditions": "Wet",
+                    "end": 101.0,
+                    "id": 5,
+                    "is_dangerous": True,
+                    "name": "XXXX",
+                    "road_id": 12345,
+                    "start": 95.0,
+                },
+            ],
+            conditions,
         )
 
     @responses.activate
@@ -390,7 +396,7 @@ class SupercellHighwayConditionsTestSuite(unittest.TestCase):
                             "RouteName": "XXXX",
                             "RoadId": 12345,
                             "RoadCondition": "Fire",
-                            "IsHazardousCondition": "true"
+                            "IsHazardousCondition": "true",
                         },
                         {
                             "WeatherRouteId": 2,
@@ -400,7 +406,7 @@ class SupercellHighwayConditionsTestSuite(unittest.TestCase):
                             "RouteName": "XXXX",
                             "RoadId": 12345,
                             "RoadCondition": "Dry",
-                            "IsHazardousCondition": "false"
+                            "IsHazardousCondition": "false",
                         },
                         {
                             "WeatherRouteId": 3,
@@ -410,7 +416,7 @@ class SupercellHighwayConditionsTestSuite(unittest.TestCase):
                             "RouteName": "XXXX",
                             "RoadId": 12345,
                             "RoadCondition": "Wet",
-                            "IsHazardousCondition": "false"
+                            "IsHazardousCondition": "false",
                         },
                         {
                             "WeatherRouteId": 4,
@@ -420,7 +426,7 @@ class SupercellHighwayConditionsTestSuite(unittest.TestCase):
                             "RouteName": "XXXX",
                             "RoadId": 12345,
                             "RoadCondition": "Windy",
-                            "IsHazardousCondition": "true"
+                            "IsHazardousCondition": "true",
                         },
                         {
                             "WeatherRouteId": 5,
@@ -430,11 +436,11 @@ class SupercellHighwayConditionsTestSuite(unittest.TestCase):
                             "RouteName": "XXXX",
                             "RoadId": 12345,
                             "RoadCondition": "Wet",
-                            "IsHazardousCondition": "true"
-                        }
+                            "IsHazardousCondition": "true",
+                        },
                     ]
                 }
-            }
+            },
         )
         responses.add(
             responses.GET,
@@ -451,7 +457,7 @@ class SupercellHighwayConditionsTestSuite(unittest.TestCase):
                             "EndMileMarker": 99.5,
                             "RoadId": "WWWW",
                             "SpeedLimit": 85,
-                            "AverageSpeed": 80
+                            "AverageSpeed": 80,
                         },
                         {
                             "RoadName": "XXXX",
@@ -462,7 +468,7 @@ class SupercellHighwayConditionsTestSuite(unittest.TestCase):
                             "EndMileMarker": 101.5,
                             "RoadId": "WWWW",
                             "SpeedLimit": 85,
-                            "AverageSpeed": 83
+                            "AverageSpeed": 83,
                         },
                         {
                             "RoadName": "XXXX",
@@ -473,7 +479,7 @@ class SupercellHighwayConditionsTestSuite(unittest.TestCase):
                             "EndMileMarker": 105.5,
                             "RoadId": "WWWW",
                             "SpeedLimit": 85,
-                            "AverageSpeed": 81
+                            "AverageSpeed": 81,
                         },
                         {
                             "RoadName": "XXXX",
@@ -484,7 +490,7 @@ class SupercellHighwayConditionsTestSuite(unittest.TestCase):
                             "EndMileMarker": 105.5,
                             "RoadId": "DDDD",
                             "SpeedLimit": 75,
-                            "AverageSpeed": 76
+                            "AverageSpeed": 76,
                         },
                         {
                             "RoadName": "XXXX",
@@ -495,7 +501,7 @@ class SupercellHighwayConditionsTestSuite(unittest.TestCase):
                             "EndMileMarker": 205.5,
                             "RoadId": "DDDD",
                             "SpeedLimit": 80,
-                            "AverageSpeed": 78
+                            "AverageSpeed": 78,
                         },
                         {
                             "RoadName": "XXXX",
@@ -506,7 +512,7 @@ class SupercellHighwayConditionsTestSuite(unittest.TestCase):
                             "EndMileMarker": 209.5,
                             "RoadId": "DDDD",
                             "SpeedLimit": 80,
-                            "AverageSpeed": 79
+                            "AverageSpeed": 79,
                         },
                         {
                             "RoadName": "XXXX",
@@ -517,7 +523,7 @@ class SupercellHighwayConditionsTestSuite(unittest.TestCase):
                             "EndMileMarker": 97.5,
                             "RoadId": "WWWW",
                             "SpeedLimit": 85,
-                            "AverageSpeed": 80
+                            "AverageSpeed": 80,
                         },
                         {
                             "RoadName": "XXXX",
@@ -528,7 +534,7 @@ class SupercellHighwayConditionsTestSuite(unittest.TestCase):
                             "EndMileMarker": 101.5,
                             "RoadId": "WWWW",
                             "SpeedLimit": 85,
-                            "AverageSpeed": 84
+                            "AverageSpeed": 84,
                         },
                         {
                             "RoadName": "XXXX",
@@ -539,7 +545,7 @@ class SupercellHighwayConditionsTestSuite(unittest.TestCase):
                             "EndMileMarker": 101.5,
                             "RoadId": "WWWW",
                             "SpeedLimit": 85,
-                            "AverageSpeed": 80
+                            "AverageSpeed": 80,
                         },
                         {
                             "RoadName": "ZZZZ",
@@ -550,7 +556,7 @@ class SupercellHighwayConditionsTestSuite(unittest.TestCase):
                             "EndMileMarker": 101.5,
                             "RoadId": "DDDD",
                             "SpeedLimit": 75,
-                            "AverageSpeed": 74
+                            "AverageSpeed": 74,
                         },
                         {
                             "RoadName": "XXXX",
@@ -561,7 +567,7 @@ class SupercellHighwayConditionsTestSuite(unittest.TestCase):
                             "EndMileMarker": 199.5,
                             "RoadId": "DDDD",
                             "SpeedLimit": 80,
-                            "AverageSpeed": 54
+                            "AverageSpeed": 54,
                         },
                         {
                             "RoadName": "XXXX",
@@ -572,36 +578,86 @@ class SupercellHighwayConditionsTestSuite(unittest.TestCase):
                             "EndMileMarker": 205.5,
                             "RoadId": "DDDD",
                             "SpeedLimit": 80,
-                            "AverageSpeed": 79
-                        }
+                            "AverageSpeed": 79,
+                        },
                     ]
                 }
-            }
+            },
         )
         status = supercell.highways.conditions.get_road_status(
             road_name="XXXX",
             start_mile_marker=100.1,
             end_mile_marker=195.5,
-            direction=None
+            direction=None,
         )
         self.assertEqual(
             {
                 "N": [
-                    {"id": "12345", "road_id": "WWWW", "name": "AAAA", "direction": "N", "start": 99.5,
-                        "end": 101.5, "limit": 85, "speed": 83, "conditions": "Wet", "is_dangerous": True},
-                    {"id": "12346", "road_id": "WWWW", "name": "AAAB", "direction": "N", "start": 101.5,
-                        "end": 105.5, "limit": 85, "speed": 81, "conditions": "Windy", "is_dangerous": True},
-                    {"id": "13346", "road_id": "DDDD", "name": "ZAAB", "direction": "N", "start": 101.5,
-                        "end": 105.5, "limit": 75, "speed": 76, "conditions": "Windy", "is_dangerous": True}
+                    {
+                        "id": "12345",
+                        "road_id": "WWWW",
+                        "name": "AAAA",
+                        "direction": "N",
+                        "start": 99.5,
+                        "end": 101.5,
+                        "limit": 85,
+                        "speed": 83,
+                        "conditions": "Wet",
+                        "is_dangerous": True,
+                    },
+                    {
+                        "id": "12346",
+                        "road_id": "WWWW",
+                        "name": "AAAB",
+                        "direction": "N",
+                        "start": 101.5,
+                        "end": 105.5,
+                        "limit": 85,
+                        "speed": 81,
+                        "conditions": "Windy",
+                        "is_dangerous": True,
+                    },
+                    {
+                        "id": "13346",
+                        "road_id": "DDDD",
+                        "name": "ZAAB",
+                        "direction": "N",
+                        "start": 101.5,
+                        "end": 105.5,
+                        "limit": 75,
+                        "speed": 76,
+                        "conditions": "Windy",
+                        "is_dangerous": True,
+                    },
                 ],
                 "S": [
-                    {"id": "12349", "road_id": "WWWW", "name": "AAAB", "direction": "S", "start": 105.5,
-                        "end": 101.5, "limit": 85, "speed": 80, "conditions": "Windy", "is_dangerous": True},
-                    {"id": "12345", "road_id": "WWWW", "name": "AAAA", "direction": "S", "start": 99.5,
-                        "end": 101.5, "limit": 85, "speed": 84, "conditions": "Wet", "is_dangerous": True}
-                ]
+                    {
+                        "id": "12349",
+                        "road_id": "WWWW",
+                        "name": "AAAB",
+                        "direction": "S",
+                        "start": 105.5,
+                        "end": 101.5,
+                        "limit": 85,
+                        "speed": 80,
+                        "conditions": "Windy",
+                        "is_dangerous": True,
+                    },
+                    {
+                        "id": "12345",
+                        "road_id": "WWWW",
+                        "name": "AAAA",
+                        "direction": "S",
+                        "start": 99.5,
+                        "end": 101.5,
+                        "limit": 85,
+                        "speed": 84,
+                        "conditions": "Wet",
+                        "is_dangerous": True,
+                    },
+                ],
             },
-            status
+            status,
         )
 
     @responses.activate
@@ -620,7 +676,7 @@ class SupercellHighwayConditionsTestSuite(unittest.TestCase):
                             "RouteName": "XXXX",
                             "RoadId": 12345,
                             "RoadCondition": "Fire",
-                            "IsHazardousCondition": "true"
+                            "IsHazardousCondition": "true",
                         },
                         {
                             "WeatherRouteId": 2,
@@ -630,7 +686,7 @@ class SupercellHighwayConditionsTestSuite(unittest.TestCase):
                             "RouteName": "XXXX",
                             "RoadId": 12345,
                             "RoadCondition": "Dry",
-                            "IsHazardousCondition": "false"
+                            "IsHazardousCondition": "false",
                         },
                         {
                             "WeatherRouteId": 3,
@@ -640,7 +696,7 @@ class SupercellHighwayConditionsTestSuite(unittest.TestCase):
                             "RouteName": "XXXX",
                             "RoadId": 12345,
                             "RoadCondition": "Wet",
-                            "IsHazardousCondition": "false"
+                            "IsHazardousCondition": "false",
                         },
                         {
                             "WeatherRouteId": 4,
@@ -650,7 +706,7 @@ class SupercellHighwayConditionsTestSuite(unittest.TestCase):
                             "RouteName": "XXXX",
                             "RoadId": 12345,
                             "RoadCondition": "Windy",
-                            "IsHazardousCondition": "true"
+                            "IsHazardousCondition": "true",
                         },
                         {
                             "WeatherRouteId": 5,
@@ -660,11 +716,11 @@ class SupercellHighwayConditionsTestSuite(unittest.TestCase):
                             "RouteName": "XXXX",
                             "RoadId": 12345,
                             "RoadCondition": "Wet",
-                            "IsHazardousCondition": "true"
-                        }
+                            "IsHazardousCondition": "true",
+                        },
                     ]
                 }
-            }
+            },
         )
         responses.add(
             responses.GET,
@@ -681,7 +737,7 @@ class SupercellHighwayConditionsTestSuite(unittest.TestCase):
                             "EndMileMarker": 99.5,
                             "RoadId": "WWWW",
                             "SpeedLimit": 85,
-                            "AverageSpeed": 80
+                            "AverageSpeed": 80,
                         },
                         {
                             "RoadName": "XXXX",
@@ -692,7 +748,7 @@ class SupercellHighwayConditionsTestSuite(unittest.TestCase):
                             "EndMileMarker": 101.5,
                             "RoadId": "WWWW",
                             "SpeedLimit": 85,
-                            "AverageSpeed": 83
+                            "AverageSpeed": 83,
                         },
                         {
                             "RoadName": "XXXX",
@@ -703,7 +759,7 @@ class SupercellHighwayConditionsTestSuite(unittest.TestCase):
                             "EndMileMarker": 105.5,
                             "RoadId": "WWWW",
                             "SpeedLimit": 85,
-                            "AverageSpeed": 81
+                            "AverageSpeed": 81,
                         },
                         {
                             "RoadName": "XXXX",
@@ -714,7 +770,7 @@ class SupercellHighwayConditionsTestSuite(unittest.TestCase):
                             "EndMileMarker": 105.5,
                             "RoadId": "DDDD",
                             "SpeedLimit": 75,
-                            "AverageSpeed": 76
+                            "AverageSpeed": 76,
                         },
                         {
                             "RoadName": "XXXX",
@@ -725,7 +781,7 @@ class SupercellHighwayConditionsTestSuite(unittest.TestCase):
                             "EndMileMarker": 205.5,
                             "RoadId": "DDDD",
                             "SpeedLimit": 80,
-                            "AverageSpeed": 78
+                            "AverageSpeed": 78,
                         },
                         {
                             "RoadName": "XXXX",
@@ -736,7 +792,7 @@ class SupercellHighwayConditionsTestSuite(unittest.TestCase):
                             "EndMileMarker": 209.5,
                             "RoadId": "DDDD",
                             "SpeedLimit": 80,
-                            "AverageSpeed": 79
+                            "AverageSpeed": 79,
                         },
                         {
                             "RoadName": "XXXX",
@@ -747,7 +803,7 @@ class SupercellHighwayConditionsTestSuite(unittest.TestCase):
                             "EndMileMarker": 97.5,
                             "RoadId": "WWWW",
                             "SpeedLimit": 85,
-                            "AverageSpeed": 80
+                            "AverageSpeed": 80,
                         },
                         {
                             "RoadName": "XXXX",
@@ -758,7 +814,7 @@ class SupercellHighwayConditionsTestSuite(unittest.TestCase):
                             "EndMileMarker": 101.5,
                             "RoadId": "WWWW",
                             "SpeedLimit": 85,
-                            "AverageSpeed": 84
+                            "AverageSpeed": 84,
                         },
                         {
                             "RoadName": "XXXX",
@@ -769,7 +825,7 @@ class SupercellHighwayConditionsTestSuite(unittest.TestCase):
                             "EndMileMarker": 101.5,
                             "RoadId": "WWWW",
                             "SpeedLimit": 85,
-                            "AverageSpeed": 80
+                            "AverageSpeed": 80,
                         },
                         {
                             "RoadName": "ZZZZ",
@@ -780,7 +836,7 @@ class SupercellHighwayConditionsTestSuite(unittest.TestCase):
                             "EndMileMarker": 101.5,
                             "RoadId": "DDDD",
                             "SpeedLimit": 75,
-                            "AverageSpeed": 74
+                            "AverageSpeed": 74,
                         },
                         {
                             "RoadName": "XXXX",
@@ -791,7 +847,7 @@ class SupercellHighwayConditionsTestSuite(unittest.TestCase):
                             "EndMileMarker": 199.5,
                             "RoadId": "DDDD",
                             "SpeedLimit": 80,
-                            "AverageSpeed": 54
+                            "AverageSpeed": 54,
                         },
                         {
                             "RoadName": "XXXX",
@@ -802,17 +858,24 @@ class SupercellHighwayConditionsTestSuite(unittest.TestCase):
                             "EndMileMarker": 205.5,
                             "RoadId": "DDDD",
                             "SpeedLimit": 80,
-                            "AverageSpeed": 79
-                        }
+                            "AverageSpeed": 79,
+                        },
                     ]
                 }
-            }
+            },
         )
         o = io.StringIO()
 
         supercell.highways.conditions.main(
             output=o,
-            args=["--road-name", "XXXX", "--start-mile-marker", "100.1", "--end-mile-marker", "199.3"]
+            args=[
+                "--road-name",
+                "XXXX",
+                "--start-mile-marker",
+                "100.1",
+                "--end-mile-marker",
+                "199.3",
+            ],
         )
 
         o.seek(0)
@@ -820,29 +883,87 @@ class SupercellHighwayConditionsTestSuite(unittest.TestCase):
         self.assertEqual(
             {
                 "N": [
-                    {"id": "12345", "road_id": "WWWW", "name": "AAAA", "direction": "N", "start": 99.5,
-                        "end": 101.5, "limit": 85, "speed": 83, "conditions": "Wet", "is_dangerous": True},
-                    {"id": "12346", "road_id": "WWWW", "name": "AAAB", "direction": "N", "start": 101.5,
-                        "end": 105.5, "limit": 85, "speed": 81, "conditions": "Windy", "is_dangerous": True},
-                    {"id": "13346", "road_id": "DDDD", "name": "ZAAB", "direction": "N", "start": 101.5,
-                        "end": 105.5, "limit": 75, "speed": 76, "conditions": "Windy", "is_dangerous": True}
+                    {
+                        "id": "12345",
+                        "road_id": "WWWW",
+                        "name": "AAAA",
+                        "direction": "N",
+                        "start": 99.5,
+                        "end": 101.5,
+                        "limit": 85,
+                        "speed": 83,
+                        "conditions": "Wet",
+                        "is_dangerous": True,
+                    },
+                    {
+                        "id": "12346",
+                        "road_id": "WWWW",
+                        "name": "AAAB",
+                        "direction": "N",
+                        "start": 101.5,
+                        "end": 105.5,
+                        "limit": 85,
+                        "speed": 81,
+                        "conditions": "Windy",
+                        "is_dangerous": True,
+                    },
+                    {
+                        "id": "13346",
+                        "road_id": "DDDD",
+                        "name": "ZAAB",
+                        "direction": "N",
+                        "start": 101.5,
+                        "end": 105.5,
+                        "limit": 75,
+                        "speed": 76,
+                        "conditions": "Windy",
+                        "is_dangerous": True,
+                    },
                 ],
                 "S": [
-                    {"id": "12349", "road_id": "WWWW", "name": "AAAB", "direction": "S", "start": 105.5,
-                        "end": 101.5, "limit": 85, "speed": 80, "conditions": "Windy", "is_dangerous": True},
-                    {"id": "12345", "road_id": "WWWW", "name": "AAAA", "direction": "S", "start": 99.5,
-                        "end": 101.5, "limit": 85, "speed": 84, "conditions": "Wet", "is_dangerous": True}
-                ]
+                    {
+                        "id": "12349",
+                        "road_id": "WWWW",
+                        "name": "AAAB",
+                        "direction": "S",
+                        "start": 105.5,
+                        "end": 101.5,
+                        "limit": 85,
+                        "speed": 80,
+                        "conditions": "Windy",
+                        "is_dangerous": True,
+                    },
+                    {
+                        "id": "12345",
+                        "road_id": "WWWW",
+                        "name": "AAAA",
+                        "direction": "S",
+                        "start": 99.5,
+                        "end": 101.5,
+                        "limit": 85,
+                        "speed": 84,
+                        "conditions": "Wet",
+                        "is_dangerous": True,
+                    },
+                ],
             },
-            json.load(o)
+            json.load(o),
         )
 
         o = io.StringIO()
 
         supercell.highways.conditions.main(
             output=o,
-            args=["--road-name", "XXXX", "--start-mile-marker", "100.1",
-                  "--end-mile-marker", "199.3", "--direction", "N"]
+            args=[
+                "--road-name",
+                "XXXX",
+                "--start-mile-marker",
+                "100.1",
+                "--end-mile-marker",
+                "199.3",
+                "--direction",
+                "N",
+            ],
         )
 
         o.seek(0)
@@ -850,15 +971,45 @@ class SupercellHighwayConditionsTestSuite(unittest.TestCase):
         self.assertEqual(
             {
                 "N": [
-                    {"id": "12345", "road_id": "WWWW", "name": "AAAA", "direction": "N", "start": 99.5,
-                        "end": 101.5, "limit": 85, "speed": 83, "conditions": "Wet", "is_dangerous": True},
-                    {"id": "12346", "road_id": "WWWW", "name": "AAAB", "direction": "N", "start": 101.5,
-                        "end": 105.5, "limit": 85, "speed": 81, "conditions": "Windy", "is_dangerous": True},
-                    {"id": "13346", "road_id": "DDDD", "name": "ZAAB", "direction": "N", "start": 101.5,
-                        "end": 105.5, "limit": 75, "speed": 76, "conditions": "Windy", "is_dangerous": True}
+                    {
+                        "id": "12345",
+                        "road_id": "WWWW",
+                        "name": "AAAA",
+                        "direction": "N",
+                        "start": 99.5,
+                        "end": 101.5,
+                        "limit": 85,
+                        "speed": 83,
+                        "conditions": "Wet",
+                        "is_dangerous": True,
+                    },
+                    {
+                        "id": "12346",
+                        "road_id": "WWWW",
+                        "name": "AAAB",
+                        "direction": "N",
+                        "start": 101.5,
+                        "end": 105.5,
+                        "limit": 85,
+                        "speed": 81,
+                        "conditions": "Windy",
+                        "is_dangerous": True,
+                    },
+                    {
+                        "id": "13346",
+                        "road_id": "DDDD",
+                        "name": "ZAAB",
+                        "direction": "N",
+                        "start": 101.5,
+                        "end": 105.5,
+                        "limit": 75,
+                        "speed": 76,
+                        "conditions": "Windy",
+                        "is_dangerous": True,
+                    },
                 ],
             },
-            json.load(o)
+            json.load(o),
         )
 
         o.seek(0)
@@ -866,11 +1017,29 @@ class SupercellHighwayConditionsTestSuite(unittest.TestCase):
 
         supercell.highways.conditions.main(
             output=o,
-            args=["--road-name", "XXXX", "--start-mile-marker", "100.1",
-                  "--end-mile-marker", "199.3", "--direction", "N", "--verbose"]
+            args=[
+                "--road-name",
+                "XXXX",
+                "--start-mile-marker",
+                "100.1",
+                "--end-mile-marker",
+                "199.3",
+                "--direction",
+                "N",
+                "--verbose",
+            ],
         )
         supercell.highways.conditions.main(
             output=o,
-            args=["--road-name", "XXXX", "--start-mile-marker", "100.1",
-                  "--end-mile-marker", "199.3", "--direction", "N", "--quiet"]
+            args=[
+                "--road-name",
+                "XXXX",
+                "--start-mile-marker",
+                "100.1",
+                "--end-mile-marker",
+                "199.3",
+                "--direction",
+                "N",
+                "--quiet",
+            ],
         )

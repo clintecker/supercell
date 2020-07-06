@@ -28,7 +28,9 @@ def fetch_cam(cam: str) -> Tuple[str, bytes]:
     """
     name, cam_path = cam.split(":")
     logger.info("Downloading Camera %s to %s", cam_path, name)
-    image_url = urlunparse(["https", HOST, PATH, None, "%s=%s" % (QUERY_PARAM, cam_path), None])
+    image_url = urlunparse(
+        ["https", HOST, PATH, None, "%s=%s" % (QUERY_PARAM, cam_path), None]
+    )
     with requests.get(image_url, stream=True) as r:
         if r.status_code == requests.codes.ok:
             r.raw.read = functools.partial(r.raw.read, decode_content=True)
@@ -42,7 +44,9 @@ def store_cam(name: str, data: bytes, directory: str) -> Path:
     """
     local_path = Path(directory, "highway-cam-%s.jpg" % name)
     with open(local_path, "wb") as f:
-        shutil.copyfileobj(io.BytesIO(data), f)
+        source: IO = io.BytesIO(data)
+        dest: IO = f
+        shutil.copyfileobj(source, dest)
     return local_path
 
 
@@ -59,10 +63,8 @@ def main(output: IO, args: Sequence[str]) -> None:
     parser = argparse.ArgumentParser(description="Download highway cameras.")
     parser.add_argument("--cam", "-c", dest="cams", action="append")
     parser.add_argument("--directory", "-d", dest="directory")
-    parser.add_argument("--quiet", dest="quiet", action="store_true",
-                        default=False)
-    parser.add_argument("--verbose", dest="verbose", action="store_true",
-                        default=False)
+    parser.add_argument("--quiet", dest="quiet", action="store_true", default=False)
+    parser.add_argument("--verbose", dest="verbose", action="store_true", default=False)
 
     parsed_args = parser.parse_args(args=args)
 

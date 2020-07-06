@@ -5,7 +5,8 @@ import unittest
 # Third Party Code
 import responses
 
-from .context import supercell
+# Supercell Code
+import supercell
 
 
 class SupercellTestSuite(unittest.TestCase):
@@ -26,9 +27,10 @@ class SupercellTestSuite(unittest.TestCase):
                 "https://api.weather.com/v3/location/near"
             )
         )
+        print(responses.calls[0].request.params)
         self.assertEqual(
             {
-                "/v3/location/near?format": "json",
+                "format": "json",
                 "apiKey": "123456",
                 "geocode": "-109.109109,39.3939",
                 "product": "postal",
@@ -73,7 +75,7 @@ class SupercellTestSuite(unittest.TestCase):
         )
         self.assertEqual(
             {
-                "/v3/wx/forecast/daily/5day?geocode": "-109.109109,39.3939",
+                "geocode": "-109.109109,39.3939",
                 "apiKey": "AAAbbbCCCddd",
                 "format": "json",
                 "language": "en-US",
@@ -118,7 +120,7 @@ class SupercellTestSuite(unittest.TestCase):
         )
         self.assertEqual(
             {
-                "/v3/wx/forecast/daily/5day?geocode": "-109.109109,39.3939",
+                "geocode": "-109.109109,39.3939",
                 "apiKey": "AAAbbbCCCddd",
                 "format": "json",
                 "language": "en-US",

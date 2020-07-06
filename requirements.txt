@@ -1,4 +1,0 @@
-requests
-ephem
-bitstring
-python-dateutil

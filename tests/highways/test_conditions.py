@@ -1,7 +1,5 @@
 """Supercell Highway Conditions Package Tests"""
 # Standard Library
-import io
-import json
 import unittest
 
 # Third Party Code
@@ -272,6 +270,24 @@ class SupercellHighwayConditionsTestSuite(unittest.TestCase):
         )
 
     @responses.activate
+    def test_get_segments_bad_response_code(self):
+        responses.add(
+            responses.GET,
+            "https://cotrip.org/speed/getSegments.do",
+            json=None,
+            status=500,
+        )
+        self.assertEqual(
+            {},
+            supercell.highways.conditions.get_segments(
+                road_name="zzzz",
+                start_mile_marker=100.25,
+                end_mile_marker=200.55,
+                direction="N",
+            ),
+        )
+
+    @responses.activate
     def test_get_conditions(self):
         responses.add(
             responses.GET,
@@ -279,6 +295,16 @@ class SupercellHighwayConditionsTestSuite(unittest.TestCase):
             json={
                 "RoadConditionsDetails": {
                     "WeatherRoute": [
+                        {
+                            "WeatherRouteId": 100,
+                            "RoadName": "GGGG",
+                            "EndMileMarker": 215.0,
+                            "StartMileMarker": 200.0,
+                            "RouteName": "GGGG",
+                            "RoadId": 12345,
+                            "RoadCondition": "Fire",
+                            "IsHazardousCondition": "true",
+                        },
                         {
                             "WeatherRouteId": 1,
                             "RoadName": "XXXX",
@@ -378,6 +404,21 @@ class SupercellHighwayConditionsTestSuite(unittest.TestCase):
                 },
             ],
             conditions,
+        )
+
+    @responses.activate
+    def test_get_conditions_bad_status_code(self):
+        responses.add(
+            responses.GET,
+            "https://cotrip.org/roadConditions/getRoadConditions.do",
+            json={},
+            status=500,
+        )
+        self.assertEqual(
+            [],
+            supercell.highways.conditions.get_conditions(
+                road_name="XXXX", start_mile_marker=100.0, end_mile_marker=199.3
+            ),
         )
 
     @responses.activate
@@ -658,388 +699,4 @@ class SupercellHighwayConditionsTestSuite(unittest.TestCase):
                 ],
             },
             status,
-        )
-
-    @responses.activate
-    def test_main(self):
-        responses.add(
-            responses.GET,
-            "https://cotrip.org/roadConditions/getRoadConditions.do",
-            json={
-                "RoadConditionsDetails": {
-                    "WeatherRoute": [
-                        {
-                            "WeatherRouteId": 1,
-                            "RoadName": "XXXX",
-                            "EndMileMarker": 215.0,
-                            "StartMileMarker": 200.0,
-                            "RouteName": "XXXX",
-                            "RoadId": 12345,
-                            "RoadCondition": "Fire",
-                            "IsHazardousCondition": "true",
-                        },
-                        {
-                            "WeatherRouteId": 2,
-                            "RoadName": "XXXX",
-                            "EndMileMarker": 200.0,
-                            "StartMileMarker": 150.0,
-                            "RouteName": "XXXX",
-                            "RoadId": 12345,
-                            "RoadCondition": "Dry",
-                            "IsHazardousCondition": "false",
-                        },
-                        {
-                            "WeatherRouteId": 3,
-                            "RoadName": "XXXX",
-                            "EndMileMarker": 150.0,
-                            "StartMileMarker": 125.0,
-                            "RouteName": "XXXX",
-                            "RoadId": 12345,
-                            "RoadCondition": "Wet",
-                            "IsHazardousCondition": "false",
-                        },
-                        {
-                            "WeatherRouteId": 4,
-                            "RoadName": "XXXX",
-                            "EndMileMarker": 125.0,
-                            "StartMileMarker": 101.0,
-                            "RouteName": "XXXX",
-                            "RoadId": 12345,
-                            "RoadCondition": "Windy",
-                            "IsHazardousCondition": "true",
-                        },
-                        {
-                            "WeatherRouteId": 5,
-                            "RoadName": "XXXX",
-                            "EndMileMarker": 101.0,
-                            "StartMileMarker": 95.0,
-                            "RouteName": "XXXX",
-                            "RoadId": 12345,
-                            "RoadCondition": "Wet",
-                            "IsHazardousCondition": "true",
-                        },
-                    ]
-                }
-            },
-        )
-        responses.add(
-            responses.GET,
-            "https://cotrip.org/speed/getSegments.do",
-            json={
-                "SpeedDetails": {
-                    "Segment": [
-                        {
-                            "RoadName": "XXXX",
-                            "StartMileMarker": 97.5,
-                            "SegmentId": "12245",
-                            "SegmentName": "AZZA",
-                            "Direction": "N",
-                            "EndMileMarker": 99.5,
-                            "RoadId": "WWWW",
-                            "SpeedLimit": 85,
-                            "AverageSpeed": 80,
-                        },
-                        {
-                            "RoadName": "XXXX",
-                            "StartMileMarker": 99.5,
-                            "SegmentId": "12345",
-                            "SegmentName": "AAAA",
-                            "Direction": "N",
-                            "EndMileMarker": 101.5,
-                            "RoadId": "WWWW",
-                            "SpeedLimit": 85,
-                            "AverageSpeed": 83,
-                        },
-                        {
-                            "RoadName": "XXXX",
-                            "StartMileMarker": 101.5,
-                            "SegmentId": "12346",
-                            "SegmentName": "AAAB",
-                            "Direction": "N",
-                            "EndMileMarker": 105.5,
-                            "RoadId": "WWWW",
-                            "SpeedLimit": 85,
-                            "AverageSpeed": 81,
-                        },
-                        {
-                            "RoadName": "XXXX",
-                            "StartMileMarker": 101.5,
-                            "SegmentId": "13346",
-                            "SegmentName": "ZAAB",
-                            "Direction": "N",
-                            "EndMileMarker": 105.5,
-                            "RoadId": "DDDD",
-                            "SpeedLimit": 75,
-                            "AverageSpeed": 76,
-                        },
-                        {
-                            "RoadName": "XXXX",
-                            "StartMileMarker": 199.5,
-                            "SegmentId": "23346",
-                            "SegmentName": "ZZAB",
-                            "Direction": "N",
-                            "EndMileMarker": 205.5,
-                            "RoadId": "DDDD",
-                            "SpeedLimit": 80,
-                            "AverageSpeed": 78,
-                        },
-                        {
-                            "RoadName": "XXXX",
-                            "StartMileMarker": 205.5,
-                            "SegmentId": "25346",
-                            "SegmentName": "ZXAB",
-                            "Direction": "N",
-                            "EndMileMarker": 209.5,
-                            "RoadId": "DDDD",
-                            "SpeedLimit": 80,
-                            "AverageSpeed": 79,
-                        },
-                        {
-                            "RoadName": "XXXX",
-                            "StartMileMarker": 99.5,
-                            "SegmentId": "12394",
-                            "SegmentName": "AZZA",
-                            "Direction": "S",
-                            "EndMileMarker": 97.5,
-                            "RoadId": "WWWW",
-                            "SpeedLimit": 85,
-                            "AverageSpeed": 80,
-                        },
-                        {
-                            "RoadName": "XXXX",
-                            "StartMileMarker": 99.5,
-                            "SegmentId": "12345",
-                            "SegmentName": "AAAA",
-                            "Direction": "S",
-                            "EndMileMarker": 101.5,
-                            "RoadId": "WWWW",
-                            "SpeedLimit": 85,
-                            "AverageSpeed": 84,
-                        },
-                        {
-                            "RoadName": "XXXX",
-                            "StartMileMarker": 105.5,
-                            "SegmentId": "12349",
-                            "SegmentName": "AAAB",
-                            "Direction": "S",
-                            "EndMileMarker": 101.5,
-                            "RoadId": "WWWW",
-                            "SpeedLimit": 85,
-                            "AverageSpeed": 80,
-                        },
-                        {
-                            "RoadName": "ZZZZ",
-                            "StartMileMarker": 105.5,
-                            "SegmentId": "13346",
-                            "SegmentName": "ZAAB",
-                            "Direction": "S",
-                            "EndMileMarker": 101.5,
-                            "RoadId": "DDDD",
-                            "SpeedLimit": 75,
-                            "AverageSpeed": 74,
-                        },
-                        {
-                            "RoadName": "XXXX",
-                            "StartMileMarker": 205.5,
-                            "SegmentId": "23336",
-                            "SegmentName": "ZZAB",
-                            "Direction": "S",
-                            "EndMileMarker": 199.5,
-                            "RoadId": "DDDD",
-                            "SpeedLimit": 80,
-                            "AverageSpeed": 54,
-                        },
-                        {
-                            "RoadName": "XXXX",
-                            "StartMileMarker": 209.5,
-                            "SegmentId": "25341",
-                            "SegmentName": "ZXAB",
-                            "Direction": "S",
-                            "EndMileMarker": 205.5,
-                            "RoadId": "DDDD",
-                            "SpeedLimit": 80,
-                            "AverageSpeed": 79,
-                        },
-                    ]
-                }
-            },
-        )
-        o = io.StringIO()
-
-        supercell.highways.conditions.main(
-            output=o,
-            args=[
-                "--road-name",
-                "XXXX",
-                "--start-mile-marker",
-                "100.1",
-                "--end-mile-marker",
-                "199.3",
-            ],
-        )
-
-        o.seek(0)
-
-        self.assertEqual(
-            {
-                "N": [
-                    {
-                        "id": "12345",
-                        "road_id": "WWWW",
-                        "name": "AAAA",
-                        "direction": "N",
-                        "start": 99.5,
-                        "end": 101.5,
-                        "limit": 85,
-                        "speed": 83,
-                        "conditions": "Wet",
-                        "is_dangerous": True,
-                    },
-                    {
-                        "id": "12346",
-                        "road_id": "WWWW",
-                        "name": "AAAB",
-                        "direction": "N",
-                        "start": 101.5,
-                        "end": 105.5,
-                        "limit": 85,
-                        "speed": 81,
-                        "conditions": "Windy",
-                        "is_dangerous": True,
-                    },
-                    {
-                        "id": "13346",
-                        "road_id": "DDDD",
-                        "name": "ZAAB",
-                        "direction": "N",
-                        "start": 101.5,
-                        "end": 105.5,
-                        "limit": 75,
-                        "speed": 76,
-                        "conditions": "Windy",
-                        "is_dangerous": True,
-                    },
-                ],
-                "S": [
-                    {
-                        "id": "12349",
-                        "road_id": "WWWW",
-                        "name": "AAAB",
-                        "direction": "S",
-                        "start": 105.5,
-                        "end": 101.5,
-                        "limit": 85,
-                        "speed": 80,
-                        "conditions": "Windy",
-                        "is_dangerous": True,
-                    },
-                    {
-                        "id": "12345",
-                        "road_id": "WWWW",
-                        "name": "AAAA",
-                        "direction": "S",
-                        "start": 99.5,
-                        "end": 101.5,
-                        "limit": 85,
-                        "speed": 84,
-                        "conditions": "Wet",
-                        "is_dangerous": True,
-                    },
-                ],
-            },
-            json.load(o),
-        )
-
-        o = io.StringIO()
-
-        supercell.highways.conditions.main(
-            output=o,
-            args=[
-                "--road-name",
-                "XXXX",
-                "--start-mile-marker",
-                "100.1",
-                "--end-mile-marker",
-                "199.3",
-                "--direction",
-                "N",
-            ],
-        )
-
-        o.seek(0)
-
-        self.assertEqual(
-            {
-                "N": [
-                    {
-                        "id": "12345",
-                        "road_id": "WWWW",
-                        "name": "AAAA",
-                        "direction": "N",
-                        "start": 99.5,
-                        "end": 101.5,
-                        "limit": 85,
-                        "speed": 83,
-                        "conditions": "Wet",
-                        "is_dangerous": True,
-                    },
-                    {
-                        "id": "12346",
-                        "road_id": "WWWW",
-                        "name": "AAAB",
-                        "direction": "N",
-                        "start": 101.5,
-                        "end": 105.5,
-                        "limit": 85,
-                        "speed": 81,
-                        "conditions": "Windy",
-                        "is_dangerous": True,
-                    },
-                    {
-                        "id": "13346",
-                        "road_id": "DDDD",
-                        "name": "ZAAB",
-                        "direction": "N",
-                        "start": 101.5,
-                        "end": 105.5,
-                        "limit": 75,
-                        "speed": 76,
-                        "conditions": "Windy",
-                        "is_dangerous": True,
-                    },
-                ],
-            },
-            json.load(o),
-        )
-
-        o.seek(0)
-        o.truncate()
-
-        supercell.highways.conditions.main(
-            output=o,
-            args=[
-                "--road-name",
-                "XXXX",
-                "--start-mile-marker",
-                "100.1",
-                "--end-mile-marker",
-                "199.3",
-                "--direction",
-                "N",
-                "--verbose",
-            ],
-        )
-        supercell.highways.conditions.main(
-            output=o,
-            args=[
-                "--road-name",
-                "XXXX",
-                "--start-mile-marker",
-                "100.1",
-                "--end-mile-marker",
-                "199.3",
-                "--direction",
-                "N",
-                "--quiet",
-            ],
         )

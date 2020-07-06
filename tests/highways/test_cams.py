@@ -1,7 +1,6 @@
 """Supercell Highway Camera Package Tests"""
 # Standard Library
 import gzip
-import io
 from pathlib import Path
 import tempfile
 import unittest
@@ -61,27 +60,3 @@ class SupercellHighwayCamsTestSuite(unittest.TestCase):
         self.assertEqual(
             ("highway-cam-name", ".jpg"), (local_path.stem, local_path.suffix),
         )
-
-    @responses.activate
-    def test_main(self):
-        responses.add(
-            responses.GET,
-            "https://i.cotrip.org/dimages/camera",
-            body=gzip.compress(b"1234444"),
-            status=200,
-            headers={"Content-Encoding": "gzip", "Content-Type": "image/jpeg"},
-        )
-        fake_stdout = io.StringIO()
-        with tempfile.TemporaryDirectory() as d:
-            highways.cams.main(fake_stdout, ["--cam", "name:bloop", "--directory", d])
-        with tempfile.TemporaryDirectory() as d:
-            highways.cams.main(
-                fake_stdout, ["--cam", "name:bloop", "--directory", d, "--verbose"]
-            )
-        with tempfile.TemporaryDirectory() as d:
-            highways.cams.main(
-                fake_stdout, ["--cam", "name:bloop", "--directory", d, "--quiet"]
-            )
-        fake_stdout.seek(0)
-        for line in fake_stdout.read().splitlines():
-            self.assertTrue(line.endswith("highway-cam-name.jpg"))

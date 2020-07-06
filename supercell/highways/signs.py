@@ -2,13 +2,11 @@
 Gets highway signs.
 """
 # Standard Library
-import argparse
 import functools
 import io
 import logging
 from pathlib import Path
 import shutil
-import sys
 from typing import Dict, IO, List, Optional
 from urllib.parse import urlunparse
 
@@ -57,42 +55,3 @@ def store_sign_image(data: bytes, local_path: Path) -> None:
         source: IO = io.BytesIO(data)
         dest: IO = f
         shutil.copyfileobj(source, dest)
-
-
-def main(args: List[str]) -> None:
-    parser = argparse.ArgumentParser(description="Download highway signs.")
-    parser.add_argument("--sign", "-s", dest="signs", action="append")
-    parser.add_argument("--directory", "-d", dest="directory")
-    parser.add_argument("--quiet", dest="quiet", action="store_true", default=False)
-    parser.add_argument("--verbose", dest="verbose", action="store_true", default=False)
-
-    parsed_args = parser.parse_args(args=args)
-
-    if parsed_args.quiet:
-        log_level = logging.ERROR
-    elif parsed_args.verbose:
-        log_level = logging.DEBUG
-    else:
-        log_level = logging.INFO
-
-    logger.setLevel(log_level)
-
-    # highways.cams.fetch_cam and store_cam could be generalized to replace
-    # the code below as well.
-    logger.info("Downloading Highway Signs")
-    all_signs = get_all_signs()
-    for sign in parsed_args.signs:
-        sign_id, name = sign.split(":")
-        logger.info("Downloading DMS ID #%s to %s", sign_id, name)
-        try:
-            store_sign_image(
-                data=fetch_sign_image(sign_id=sign_id, all_signs=all_signs),
-                local_path=Path(parsed_args.directory, "highway-sign-%s.gif" % name),
-            )
-        except ValueError:
-            logger.error("Could not download %s:%s", sign_id, name)
-            continue
-
-
-if __name__ == "__main__":
-    main(sys.argv[1:])

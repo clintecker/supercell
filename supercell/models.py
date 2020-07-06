@@ -30,10 +30,14 @@ class Forecast(object):
         identifier: Optional[int] = None,
     ) -> None:
 
-        if isinstance(forecast_for_date, datetime.date):
+        if isinstance(forecast_for_date, datetime.datetime):
+            self._forecast_for_date = forecast_for_date.date()
+        elif isinstance(forecast_for_date, datetime.date):
             self._forecast_for_date = forecast_for_date
         elif isinstance(forecast_for_date, str):
-            self._forecast_for_date = parse(forecast_for_date)
+            self._forecast_for_date = parse(forecast_for_date).date()
+        else:
+            raise TypeError("Forecast for date must be a string or date.")
 
         self.forecast_for_utc_offset_seconds = int(forecast_for_utc_offset_seconds)
 
@@ -41,6 +45,8 @@ class Forecast(object):
             self.forecast_made_datetime = forecast_made_datetime
         elif isinstance(forecast_made_datetime, str):
             self.forecast_made_datetime = parse(forecast_made_datetime)
+        else:
+            raise TypeError("Forecast made must be a string or datetime.")
 
         self.temperature_min = temperature_min and float(temperature_min) or None
         self.temperature_max = temperature_max and float(temperature_max) or None

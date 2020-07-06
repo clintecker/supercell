@@ -174,7 +174,3 @@ class SupercellTestSuite(unittest.TestCase):
             },
             observation.to_dict(),
         )
-
-
-if __name__ == "__main__":
-    unittest.main()

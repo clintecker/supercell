@@ -56,32 +56,3 @@ def download_cam(cam: str, directory: str) -> str:
     """
     name, data = fetch_cam(cam)
     return str(store_cam(name, data, directory).resolve())
-
-
-def main(output: IO, args: Sequence[str]) -> None:
-    """The CLI portion of this script."""
-    parser = argparse.ArgumentParser(description="Download highway cameras.")
-    parser.add_argument("--cam", "-c", dest="cams", action="append")
-    parser.add_argument("--directory", "-d", dest="directory")
-    parser.add_argument("--quiet", dest="quiet", action="store_true", default=False)
-    parser.add_argument("--verbose", dest="verbose", action="store_true", default=False)
-
-    parsed_args = parser.parse_args(args=args)
-
-    if parsed_args.quiet:
-        log_level = logging.ERROR
-    elif parsed_args.verbose:
-        log_level = logging.DEBUG
-    else:
-        log_level = logging.INFO
-
-    logger.setLevel(log_level)
-    logger.info("Downloading Highway Cameras")
-
-    for path in [download_cam(cam, parsed_args.directory) for cam in parsed_args.cams]:
-        output.write(path + "\n")
-    output.flush()
-
-
-if __name__ == "__main__":
-    main(sys.stdout, args=sys.argv[1:])

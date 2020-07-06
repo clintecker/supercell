@@ -62,6 +62,37 @@ class SupercellForecastModelTestSuite(unittest.TestCase):
             f.to_dict(),
         )
 
+    def test_forecast_model_bad_date(self):
+        supercell.Forecast(
+            forecast_for_date=datetime.datetime(2020, 5, 6, 11, 11, 11),
+            forecast_for_utc_offset_seconds=-21600,
+            forecast_made_datetime=datetime.datetime(2020, 5, 6, 11, 11, 11),
+            temperature_min=10,
+            temperature_max=50,
+            longitude=39.3939,
+            latitude=-109.109109,
+        )
+        with self.assertRaises(TypeError):
+            supercell.Forecast(
+                forecast_for_date=123,
+                forecast_for_utc_offset_seconds=-21600,
+                forecast_made_datetime=datetime.datetime(2020, 5, 6, 11, 11, 11),
+                temperature_min=10,
+                temperature_max=50,
+                longitude=39.3939,
+                latitude=-109.109109,
+            )
+        with self.assertRaises(TypeError):
+            supercell.Forecast(
+                forecast_for_date=datetime.date(2020, 5, 6),
+                forecast_for_utc_offset_seconds=-21600,
+                forecast_made_datetime=datetime.date(2020, 5, 6),
+                temperature_min=10,
+                temperature_max=50,
+                longitude=39.3939,
+                latitude=-109.109109,
+            )
+
     def test_forecast_model_alternate(self):
         f = supercell.Forecast(
             forecast_for_date="2001-10-02",

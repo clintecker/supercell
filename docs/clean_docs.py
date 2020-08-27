@@ -6,6 +6,7 @@ This is needed if the Python source being documented changes significantly. Old 
 RST files can be left behind.
 """
 
+# Standard Library
 from pathlib import Path
 import shutil
 

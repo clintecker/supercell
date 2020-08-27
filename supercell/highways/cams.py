@@ -2,14 +2,12 @@
 Highway Cameras
 """
 # Standard Library
-import argparse
 import functools
 import io
 import logging
 from pathlib import Path
 import shutil
-import sys
-from typing import IO, Sequence, Tuple
+from typing import IO, Tuple
 from urllib.parse import urlunparse
 
 # Third Party Code

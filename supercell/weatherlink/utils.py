@@ -8,11 +8,7 @@ from typing import List, Optional
 from bitstring import BitStream
 
 # Supercell Code
-from supercell.weatherlink.exceptions import (
-    BadCRC,
-    NotAcknowledged,
-    UnknownResponseCode
-)
+from supercell.weatherlink.exceptions import BadCRC, NotAcknowledged, UnknownResponseCode
 
 socket.setdefaulttimeout(2.0)
 

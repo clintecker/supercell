@@ -1,11 +1,7 @@
 # Standard Library
 import datetime
 import random
-from typing import (
-    Dict,
-    List,
-    Optional
-)
+from typing import Dict, List, Optional
 
 # Third Party Code
 from bitstring import BitStream
@@ -13,14 +9,8 @@ from dateutil.tz import tzlocal
 import ephem
 
 # Supercell Code
-from supercell.weatherlink.exceptions import (
-    BadCRC
-)
-from supercell.weatherlink.utils import (
-    crc16,
-    CRC16_TABLE,
-    make_time
-)
+from supercell.weatherlink.exceptions import BadCRC
+from supercell.weatherlink.utils import crc16, CRC16_TABLE, make_time
 
 FORECAST_RULES = [
     "Mostly clear and cooler.",

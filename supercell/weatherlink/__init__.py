@@ -6,17 +6,10 @@ import logging
 import socket
 import time
 
-from supercell.weatherlink.exceptions import (
-    BadCRC,
-    NotAcknowledged,
-    UnknownResponseCode
-)
+# Supercell Code
+from supercell.weatherlink.exceptions import BadCRC, NotAcknowledged, UnknownResponseCode
 from supercell.weatherlink.models import StationObservation
-from supercell.weatherlink.utils import (
-    connect,
-    receive_data,
-    request
-)
+from supercell.weatherlink.utils import connect, receive_data, request
 
 LOOP_COMMAND = b"LOOP %d\n"
 LOOP_RECORD_SIZE_BYTES = 99

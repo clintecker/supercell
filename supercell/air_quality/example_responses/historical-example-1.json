@@ -1,0 +1,24 @@
+{
+  "metadata": {
+    "timestamp": "2020-08-24T18:16:22Z",
+    "location": { "country": "China" },
+    "indexes": {
+      "baqi": { "pollutants": ["co", "no2", "o3", "pm10", "pm25", "so2"] }
+    }
+  },
+  "data": {
+    "datetime": "2020-08-24T18:00:00Z",
+    "data_available": true,
+    "indexes": {
+      "baqi": {
+        "display_name": "BreezoMeter AQI",
+        "aqi": 65,
+        "aqi_display": "65",
+        "color": "#A2DB26",
+        "category": "Good air quality",
+        "dominant_pollutant": "pm25"
+      }
+    }
+  },
+  "error": null
+}

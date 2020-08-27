@@ -1,0 +1,174 @@
+{
+  "metadata": null,
+  "data": [
+    {
+      "datetime": "2020-08-27T21:00:00Z",
+      "data_available": true,
+      "indexes": {
+        "baqi": {
+          "display_name": "BreezoMeter AQI",
+          "aqi": 45,
+          "aqi_display": "45",
+          "color": "#FFE200",
+          "category": "Moderate air quality",
+          "dominant_pollutant": "o3"
+        }
+      }
+    },
+    {
+      "datetime": "2020-08-27T22:00:00Z",
+      "data_available": true,
+      "indexes": {
+        "baqi": {
+          "display_name": "BreezoMeter AQI",
+          "aqi": 45,
+          "aqi_display": "45",
+          "color": "#FFE200",
+          "category": "Moderate air quality",
+          "dominant_pollutant": "o3"
+        }
+      }
+    },
+    {
+      "datetime": "2020-08-27T23:00:00Z",
+      "data_available": true,
+      "indexes": {
+        "baqi": {
+          "display_name": "BreezoMeter AQI",
+          "aqi": 46,
+          "aqi_display": "46",
+          "color": "#FFE800",
+          "category": "Moderate air quality",
+          "dominant_pollutant": "o3"
+        }
+      }
+    },
+    {
+      "datetime": "2020-08-28T00:00:00Z",
+      "data_available": true,
+      "indexes": {
+        "baqi": {
+          "display_name": "BreezoMeter AQI",
+          "aqi": 47,
+          "aqi_display": "47",
+          "color": "#FFED00",
+          "category": "Moderate air quality",
+          "dominant_pollutant": "o3"
+        }
+      }
+    },
+    {
+      "datetime": "2020-08-28T01:00:00Z",
+      "data_available": true,
+      "indexes": {
+        "baqi": {
+          "display_name": "BreezoMeter AQI",
+          "aqi": 52,
+          "aqi_display": "52",
+          "color": "#F2FA05",
+          "category": "Moderate air quality",
+          "dominant_pollutant": "o3"
+        }
+      }
+    },
+    {
+      "datetime": "2020-08-28T02:00:00Z",
+      "data_available": true,
+      "indexes": {
+        "baqi": {
+          "display_name": "BreezoMeter AQI",
+          "aqi": 58,
+          "aqi_display": "58",
+          "color": "#CDEB14",
+          "category": "Moderate air quality",
+          "dominant_pollutant": "o3"
+        }
+      }
+    },
+    {
+      "datetime": "2020-08-28T03:00:00Z",
+      "data_available": true,
+      "indexes": {
+        "baqi": {
+          "display_name": "BreezoMeter AQI",
+          "aqi": 68,
+          "aqi_display": "68",
+          "color": "#90D32D",
+          "category": "Good air quality",
+          "dominant_pollutant": "o3"
+        }
+      }
+    },
+    {
+      "datetime": "2020-08-28T04:00:00Z",
+      "data_available": true,
+      "indexes": {
+        "baqi": {
+          "display_name": "BreezoMeter AQI",
+          "aqi": 71,
+          "aqi_display": "71",
+          "color": "#7FCD33",
+          "category": "Good air quality",
+          "dominant_pollutant": "o3"
+        }
+      }
+    },
+    {
+      "datetime": "2020-08-28T05:00:00Z",
+      "data_available": true,
+      "indexes": {
+        "baqi": {
+          "display_name": "BreezoMeter AQI",
+          "aqi": 73,
+          "aqi_display": "73",
+          "color": "#76CA33",
+          "category": "Good air quality",
+          "dominant_pollutant": "o3"
+        }
+      }
+    },
+    {
+      "datetime": "2020-08-28T06:00:00Z",
+      "data_available": true,
+      "indexes": {
+        "baqi": {
+          "display_name": "BreezoMeter AQI",
+          "aqi": 76,
+          "aqi_display": "76",
+          "color": "#69C534",
+          "category": "Good air quality",
+          "dominant_pollutant": "o3"
+        }
+      }
+    },
+    {
+      "datetime": "2020-08-28T07:00:00Z",
+      "data_available": true,
+      "indexes": {
+        "baqi": {
+          "display_name": "BreezoMeter AQI",
+          "aqi": 77,
+          "aqi_display": "77",
+          "color": "#65C334",
+          "category": "Good air quality",
+          "dominant_pollutant": "o3"
+        }
+      }
+    },
+    {
+      "datetime": "2020-08-28T08:00:00Z",
+      "data_available": true,
+      "indexes": {
+        "baqi": {
+          "display_name": "BreezoMeter AQI",
+          "aqi": 78,
+          "aqi_display": "78",
+          "color": "#60C134",
+          "category": "Good air quality",
+          "dominant_pollutant": "o3"
+        }
+      }
+    }
+  ],
+  "error": null
+}

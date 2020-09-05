@@ -1,36 +1,24 @@
 """
 Air Quality Stuff!
 
-TODO: Other endpoints
-- /pollen/v2/current-conditions - No docs
-- /pollen/v2/forecast/daily - https://docs.breezometer.com/api-documentation/pollen-api/v2/#daily-forecast
-- /v1/weather/currentconditions - https://docs.breezometer.com/weather-api/v1/#current-conditions
-  - `/weather/v1/current-conditions` ??
-  - "Returns current weather conditions for a specific location"
-- /v1/weather/hourlyforecast - https://docs.breezometer.com/weather-api/v1/#hourly-forecast
-  - `/weather/v1/forecast/hourly` ??
-  - "Returns hourly weather forecasts for the specified location. Each forecast includes hourly weather temperature,
-        wind speeds, humidity, precipitation, etc. For a maximum of 120 hours (5 days)."
-- /v1/weather/dailyforecast - https://docs.breezometer.com/api-documentation/weather-api/v1/#daily-forecast
-  - `/weather/v1/forecast/daily` ??
-  - "Each forecast includes daily UV radiation, sunrise and sunset times, and moon conditions for a maximum of
-        five days of daily forecasts."
-- /fires/v1/current-conditions - https://docs.breezometer.com/api-documentation/fires-api/v1/#current-conditions
+Currently this is built pretty specifically against an API administered by
+"Breezometer" but its perhaps feasible it could be amended to use other
+services to get similar information.
 """
 # Standard Library
 import datetime
 import logging
 
 # Supercell Code
+from supercell.air_quality.constants import (
+    AIR_QUALITY_API_FEATURES,
+    HISTORICAL_AIR_QUALITY_API_FEATURES,
+)
 from supercell.air_quality.models.air_quality_api_response import AirQualityAPIResponse
 from supercell.air_quality.models.air_quality_collection_api_response import (
     AirQualityCollectionAPIResponse,
 )
 from supercell.air_quality.utils import make_api_request
-from supercell.air_quality.constants import (
-    AIR_QUALITY_API_FEATURES,
-    HISTORICAL_AIR_QUALITY_API_FEATURES,
-)
 
 logger = logging.getLogger(__name__)
 
@@ -81,5 +69,6 @@ def air_quality_forecast_hourly(
             api_key=api_key,
             metadata=False,  # Could make this true to obtain a list of timestamps
             hours=hours,
-        )
+        ),
+        timestamp=datetime.datetime.utcnow(),
     )

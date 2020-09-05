@@ -1,7 +1,7 @@
 """Air Quality API Response Data Models"""
 # Standard Library
 import datetime
-from typing import Any, Dict, Optional
+from typing import Any, Dict, List, Optional
 
 # Third Party Code
 from dateutil.parser import parse
@@ -21,15 +21,15 @@ class AirQualityAPIResponseData(AirQualityModel):
 
     timestamp: datetime.datetime
     data_available: bool = False
-    indexes: Dict[str, AirQualityIndex]
-    pollutants: Optional[Dict[str, AirQualityPollutant]] = None
+    indexes: List[AirQualityIndex]
+    pollutants: Optional[List[AirQualityPollutant]] = None
 
     def __init__(
         self,
         timestamp: datetime.datetime,
         data_available: bool,
-        indexes: Dict[str, AirQualityIndex],
-        pollutants: Optional[Dict[str, AirQualityPollutant]] = None,
+        indexes: List[AirQualityIndex],
+        pollutants: Optional[List[AirQualityPollutant]] = None,
     ) -> None:
         self.indexes = indexes
         self.pollutants = pollutants
@@ -49,8 +49,8 @@ class AirQualityAPIResponseData(AirQualityModel):
         timestamp = parse(response_dictionary["datetime"])
         pollutants_data = response_dictionary.get("pollutants")
         if pollutants_data:
-            pollutants = {
-                short_name: AirQualityPollutant.initialize_from_dict(
+            pollutants = [
+                AirQualityPollutant.initialize_from_dict(
                     short_name=short_name,
                     response_dictionary=pollutant_data,
                     timestamp=timestamp,
@@ -58,19 +58,19 @@ class AirQualityAPIResponseData(AirQualityModel):
                 for short_name, pollutant_data in response_dictionary[
                     "pollutants"
                 ].items()
-            }
+            ]
         else:
-            pollutants = {}
+            pollutants = []
         return cls(
             timestamp=timestamp,
-            indexes={
-                short_name: AirQualityIndex.initialize_from_dictionary(
+            indexes=[
+                AirQualityIndex.initialize_from_dictionary(
                     short_name=short_name,
                     response_dictionary=index_data,
                     timestamp=timestamp,
                 )
                 for short_name, index_data in response_dictionary["indexes"].items()
-            },
+            ],
             pollutants=pollutants,
             data_available=response_dictionary["data_available"],
         )

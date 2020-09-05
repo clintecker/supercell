@@ -14,3 +14,5 @@ dist
 build
 .python-version
 .vscode
+cov.xml
+cov.xml

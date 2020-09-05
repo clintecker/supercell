@@ -1,3 +1,4 @@
+"""Air Quality API Response Data Models"""
 # Standard Library
 import datetime
 from typing import Any, Dict, Optional
@@ -8,10 +9,15 @@ from dateutil.parser import parse
 # Supercell Code
 from supercell.air_quality.models.air_quality_index import AirQualityIndex
 from supercell.air_quality.models.air_quality_pollutant import AirQualityPollutant
+from supercell.air_quality.models.base import AirQualityModel
 
 
-class AirQualityAPIResponseData(object):
+class AirQualityAPIResponseData(AirQualityModel):
     """Air Quality API Response Data"""
+
+    str_fmt = (
+        "{class_name} [{timestamp}]: data_available={data_available} indexes={indexes}"
+    )
 
     timestamp: datetime.datetime
     data_available: bool = False
@@ -25,25 +31,29 @@ class AirQualityAPIResponseData(object):
         indexes: Dict[str, AirQualityIndex],
         pollutants: Optional[Dict[str, AirQualityPollutant]] = None,
     ) -> None:
-        self.timestamp = timestamp
         self.indexes = indexes
         self.pollutants = pollutants
         self.data_available = data_available
+        super().__init__(timestamp=timestamp)
 
-    def __repr__(self) -> str:
-        return (
-            f"AirQualityAPIResponseData(timestamp='{self.timestamp.isoformat()}', "
-            f"data_available={self.data_available}, "
-            f"indexes={self.indexes}, pollutants={self.pollutants})"
+    def to_str(self) -> str:
+        return self.str_fmt.format(
+            class_name=self.__class__.__name__,
+            timestamp=self.timestamp,
+            data_available=self.data_available,
+            indexes=self.indexes,
         )
 
     @classmethod
     def initialize_from_dictionary(cls, response_dictionary: Dict[str, Any]):
+        timestamp = parse(response_dictionary["datetime"])
         pollutants_data = response_dictionary.get("pollutants")
         if pollutants_data:
             pollutants = {
                 short_name: AirQualityPollutant.initialize_from_dict(
-                    short_name=short_name, response_dictionary=pollutant_data
+                    short_name=short_name,
+                    response_dictionary=pollutant_data,
+                    timestamp=timestamp,
                 )
                 for short_name, pollutant_data in response_dictionary[
                     "pollutants"
@@ -52,10 +62,12 @@ class AirQualityAPIResponseData(object):
         else:
             pollutants = {}
         return cls(
-            timestamp=parse(response_dictionary["datetime"]),
+            timestamp=timestamp,
             indexes={
                 short_name: AirQualityIndex.initialize_from_dictionary(
-                    short_name=short_name, response_dictionary=index_data
+                    short_name=short_name,
+                    response_dictionary=index_data,
+                    timestamp=timestamp,
                 )
                 for short_name, index_data in response_dictionary["indexes"].items()
             },

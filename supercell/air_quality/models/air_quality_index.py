@@ -63,5 +63,5 @@ class AirQualityIndex(AirQualityModel):
             aqi_display=response_dictionary["aqi_display"],
             category=response_dictionary["category"],
             color=response_dictionary["color"],
-            dominant_pollutant=response_dictionary["dominant_pollutant"],
+            dominant_pollutant=response_dictionary.get("dominant_pollutant"),
         )

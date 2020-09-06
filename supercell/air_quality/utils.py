@@ -3,6 +3,7 @@ Air Quality Utilities
 """
 # Standard Library
 import copy
+import datetime
 from typing import Any, Dict, Iterable
 from urllib.parse import urlunparse
 
@@ -89,6 +90,8 @@ def make_api_request(
 ) -> Dict[str, Any]:
     """Makes an API request to Breezometer."""
     # TODO: Add support to `make_durable_get` to support setting headers.
+    delay = extra_parameters.pop("delay", 2)
+    num_attempts = extra_parameters.pop("num_attempts", 3)
     return make_durable_get(
         build_uri(
             path=path,
@@ -99,6 +102,10 @@ def make_api_request(
             latitude=latitude,
             **extra_parameters,
         ),
-        num_attempts=3,
-        delay=2,
+        num_attempts=num_attempts,
+        delay=delay,
     ).json()
+
+
+def get_current_timestamp():
+    return datetime.datetime.utcnow()

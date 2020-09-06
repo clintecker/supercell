@@ -3,6 +3,9 @@
 import datetime
 from typing import Any, Dict, Optional
 
+# Third Party Code
+from dateutil.parser import parse
+
 # Supercell Code
 from supercell.air_quality.models.air_quality_api_response_data import AirQualityAPIResponseData
 from supercell.air_quality.models.api_response_metadata import APIResponseMetadata
@@ -57,5 +60,7 @@ class AirQualityAPIResponse(AirQualityModel):
                 response_dictionary=response_dictionary["data"]
             ),
             error=response_dictionary.get("error"),
-            timestamp=metadata.timestamp,
+            timestamp=metadata
+            and metadata.timestamp
+            or parse(response_dictionary["data"]["datetime"]),
         )

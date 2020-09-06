@@ -18,13 +18,13 @@ from supercell.air_quality.models.air_quality_api_response import AirQualityAPIR
 from supercell.air_quality.models.air_quality_collection_api_response import (
     AirQualityCollectionAPIResponse,
 )
-from supercell.air_quality.utils import make_api_request
+from supercell.air_quality.utils import get_current_timestamp, make_api_request
 
 logger = logging.getLogger(__name__)
 
 
 def current_air_quality(
-    latitude: float, longitude: float, api_key: str
+    latitude: float, longitude: float, api_key: str, **extra_options
 ) -> AirQualityAPIResponse:
     """Obtain the current air quality information for a specific location"""
     return AirQualityAPIResponse.initialize_from_dictionary(
@@ -35,14 +35,19 @@ def current_air_quality(
             features=AIR_QUALITY_API_FEATURES,
             api_key=api_key,
             metadata=True,
+            **extra_options,
         )
     )
 
 
 def historical_air_quality_hourly(
-    latitude: float, longitude: float, utc_datetime: datetime.datetime, api_key: str
+    latitude: float,
+    longitude: float,
+    utc_datetime: datetime.datetime,
+    api_key: str,
+    **extra_options,
 ) -> AirQualityAPIResponse:
-    """Obtain the historical air quality information for a specific location"""
+    """Obtain the historical air quality information for a specific location and point-in-time."""
     return AirQualityAPIResponse.initialize_from_dictionary(
         response_dictionary=make_api_request(
             path="/air-quality/v2/historical/hourly",
@@ -52,12 +57,13 @@ def historical_air_quality_hourly(
             api_key=api_key,
             metadata=True,
             datetime=utc_datetime.isoformat(),
+            **extra_options,
         )
     )
 
 
 def air_quality_forecast_hourly(
-    latitude: float, longitude: float, hours: int, api_key: str
+    latitude: float, longitude: float, hours: int, api_key: str, **extra_options
 ) -> AirQualityCollectionAPIResponse:
     """Obtain hourly air quality forecasts for a specific location"""
     return AirQualityCollectionAPIResponse.initialize_from_dictionary(
@@ -69,6 +75,7 @@ def air_quality_forecast_hourly(
             api_key=api_key,
             metadata=False,  # Could make this true to obtain a list of timestamps
             hours=hours,
+            **extra_options,
         ),
-        timestamp=datetime.datetime.utcnow(),
+        timestamp=get_current_timestamp(),
     )

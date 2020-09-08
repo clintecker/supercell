@@ -1,3 +1,0 @@
-"""
-Pollen Models
-"""

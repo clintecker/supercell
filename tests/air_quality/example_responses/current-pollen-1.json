@@ -1,0 +1,306 @@
+{
+  "metadata": {
+    "start_date": "2020-09-06",
+    "end_date": "2020-09-08",
+    "location": { "country": "United States" },
+    "types": {
+      "grass": { "plants": ["graminales"] },
+      "tree": {
+        "plants": [
+          "juniper",
+          "elm",
+          "oak",
+          "alder",
+          "pine",
+          "cottonwood",
+          "birch",
+          "ash",
+          "maple"
+        ]
+      },
+      "weed": { "plants": ["ragweed"] }
+    }
+  },
+  "data": [
+    {
+      "date": "2020-09-06",
+      "index_id": "bpi",
+      "index_display_name": "BreezoMeter Pollen Index",
+      "types": {
+        "grass": {
+          "display_name": "Grass",
+          "in_season": true,
+          "data_available": true,
+          "index": { "value": 4, "category": "High", "color": "#FF8C00" }
+        },
+        "tree": {
+          "display_name": "Tree",
+          "in_season": true,
+          "data_available": true,
+          "index": { "value": 0, "category": "None", "color": null }
+        },
+        "weed": {
+          "display_name": "Weed",
+          "in_season": true,
+          "data_available": true,
+          "index": { "value": 3, "category": "Moderate", "color": "#FFFF00" }
+        }
+      },
+      "plants": {
+        "graminales": {
+          "display_name": "Graminales",
+          "in_season": true,
+          "data_available": true,
+          "index": { "value": 4, "category": "High", "color": "#FF8C00" }
+        },
+        "juniper": {
+          "display_name": "Juniper",
+          "in_season": false,
+          "data_available": false,
+          "index": { "value": null, "category": null, "color": null }
+        },
+        "elm": {
+          "display_name": "Elm",
+          "in_season": true,
+          "data_available": true,
+          "index": { "value": 0, "category": "None", "color": null }
+        },
+        "oak": {
+          "display_name": "Oak",
+          "in_season": false,
+          "data_available": false,
+          "index": { "value": null, "category": null, "color": null }
+        },
+        "alder": {
+          "display_name": "Alder",
+          "in_season": false,
+          "data_available": false,
+          "index": { "value": null, "category": null, "color": null }
+        },
+        "pine": {
+          "display_name": "Pine",
+          "in_season": false,
+          "data_available": false,
+          "index": { "value": null, "category": null, "color": null }
+        },
+        "cottonwood": {
+          "display_name": "Cottonwood",
+          "in_season": false,
+          "data_available": false,
+          "index": { "value": null, "category": null, "color": null }
+        },
+        "ragweed": {
+          "display_name": "Ragweed",
+          "in_season": true,
+          "data_available": true,
+          "index": { "value": 3, "category": "Moderate", "color": "#FFFF00" }
+        },
+        "birch": {
+          "display_name": "Birch",
+          "in_season": false,
+          "data_available": false,
+          "index": { "value": null, "category": null, "color": null }
+        },
+        "ash": {
+          "display_name": "Ash",
+          "in_season": false,
+          "data_available": false,
+          "index": { "value": null, "category": null, "color": null }
+        },
+        "maple": {
+          "display_name": "Maple",
+          "in_season": false,
+          "data_available": false,
+          "index": { "value": null, "category": null, "color": null }
+        }
+      }
+    },
+    {
+      "date": "2020-09-07",
+      "index_id": "bpi",
+      "index_display_name": "BreezoMeter Pollen Index",
+      "types": {
+        "grass": {
+          "display_name": "Grass",
+          "in_season": true,
+          "data_available": true,
+          "index": { "value": 4, "category": "High", "color": "#FF8C00" }
+        },
+        "tree": {
+          "display_name": "Tree",
+          "in_season": true,
+          "data_available": true,
+          "index": { "value": 0, "category": "None", "color": null }
+        },
+        "weed": {
+          "display_name": "Weed",
+          "in_season": true,
+          "data_available": true,
+          "index": { "value": 3, "category": "Moderate", "color": "#FFFF00" }
+        }
+      },
+      "plants": {
+        "graminales": {
+          "display_name": "Graminales",
+          "in_season": true,
+          "data_available": true,
+          "index": { "value": 4, "category": "High", "color": "#FF8C00" }
+        },
+        "juniper": {
+          "display_name": "Juniper",
+          "in_season": false,
+          "data_available": false,
+          "index": { "value": null, "category": null, "color": null }
+        },
+        "elm": {
+          "display_name": "Elm",
+          "in_season": true,
+          "data_available": true,
+          "index": { "value": 0, "category": "None", "color": null }
+        },
+        "oak": {
+          "display_name": "Oak",
+          "in_season": false,
+          "data_available": false,
+          "index": { "value": null, "category": null, "color": null }
+        },
+        "alder": {
+          "display_name": "Alder",
+          "in_season": false,
+          "data_available": false,
+          "index": { "value": null, "category": null, "color": null }
+        },
+        "pine": {
+          "display_name": "Pine",
+          "in_season": false,
+          "data_available": false,
+          "index": { "value": null, "category": null, "color": null }
+        },
+        "cottonwood": {
+          "display_name": "Cottonwood",
+          "in_season": false,
+          "data_available": false,
+          "index": { "value": null, "category": null, "color": null }
+        },
+        "ragweed": {
+          "display_name": "Ragweed",
+          "in_season": true,
+          "data_available": true,
+          "index": { "value": 3, "category": "Moderate", "color": "#FFFF00" }
+        },
+        "birch": {
+          "display_name": "Birch",
+          "in_season": false,
+          "data_available": false,
+          "index": { "value": null, "category": null, "color": null }
+        },
+        "ash": {
+          "display_name": "Ash",
+          "in_season": false,
+          "data_available": false,
+          "index": { "value": null, "category": null, "color": null }
+        },
+        "maple": {
+          "display_name": "Maple",
+          "in_season": false,
+          "data_available": false,
+          "index": { "value": null, "category": null, "color": null }
+        }
+      }
+    },
+    {
+      "date": "2020-09-08",
+      "index_id": "bpi",
+      "index_display_name": "BreezoMeter Pollen Index",
+      "types": {
+        "grass": {
+          "display_name": "Grass",
+          "in_season": true,
+          "data_available": true,
+          "index": { "value": 4, "category": "High", "color": "#FF8C00" }
+        },
+        "tree": {
+          "display_name": "Tree",
+          "in_season": false,
+          "data_available": false,
+          "index": { "value": null, "category": null, "color": null }
+        },
+        "weed": {
+          "display_name": "Weed",
+          "in_season": true,
+          "data_available": true,
+          "index": { "value": 2, "category": "Low", "color": "#84CF33" }
+        }
+      },
+      "plants": {
+        "graminales": {
+          "display_name": "Graminales",
+          "in_season": true,
+          "data_available": true,
+          "index": { "value": 4, "category": "High", "color": "#FF8C00" }
+        },
+        "juniper": {
+          "display_name": "Juniper",
+          "in_season": false,
+          "data_available": false,
+          "index": { "value": null, "category": null, "color": null }
+        },
+        "elm": {
+          "display_name": "Elm",
+          "in_season": false,
+          "data_available": false,
+          "index": { "value": null, "category": null, "color": null }
+        },
+        "oak": {
+          "display_name": "Oak",
+          "in_season": false,
+          "data_available": false,
+          "index": { "value": null, "category": null, "color": null }
+        },
+        "alder": {
+          "display_name": "Alder",
+          "in_season": false,
+          "data_available": false,
+          "index": { "value": null, "category": null, "color": null }
+        },
+        "pine": {
+          "display_name": "Pine",
+          "in_season": false,
+          "data_available": false,
+          "index": { "value": null, "category": null, "color": null }
+        },
+        "cottonwood": {
+          "display_name": "Cottonwood",
+          "in_season": false,
+          "data_available": false,
+          "index": { "value": null, "category": null, "color": null }
+        },
+        "ragweed": {
+          "display_name": "Ragweed",
+          "in_season": true,
+          "data_available": true,
+          "index": { "value": 2, "category": "Low", "color": "#84CF33" }
+        },
+        "birch": {
+          "display_name": "Birch",
+          "in_season": false,
+          "data_available": false,
+          "index": { "value": null, "category": null, "color": null }
+        },
+        "ash": {
+          "display_name": "Ash",
+          "in_season": false,
+          "data_available": false,
+          "index": { "value": null, "category": null, "color": null }
+        },
+        "maple": {
+          "display_name": "Maple",
+          "in_season": false,
+          "data_available": false,
+          "index": { "value": null, "category": null, "color": null }
+        }
+      }
+    }
+  ],
+  "error": null
+}

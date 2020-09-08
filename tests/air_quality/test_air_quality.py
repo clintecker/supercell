@@ -12,10 +12,10 @@ from supercell.air_quality import (
     current_air_quality,
     historical_air_quality_hourly,
 )
+from supercell.air_quality.models.air_quality_api_response import AirQualityAPIResponse
 from supercell.air_quality.models.air_quality_collection_api_response import (
     AirQualityCollectionAPIResponse,
 )
-from supercell.air_quality.models.air_quality_api_response import AirQualityAPIResponse
 
 
 @responses.activate

@@ -40,10 +40,10 @@ def test_current_air_quality():
     )
     assert len(responses.calls) == 1
     assert responses.calls[0].request.url == (
-        "https://api.breezometer.com/air-quality/v2/current-conditions"
-        "?metadata=true&features=breezometer_aqi,local_aqi,pollutants_concentrations,"
-        "all_pollutants_concentrations,pollutants_aqi_information&key=aaBBccDD&"
-        "lat=39.3939&lon=-109.10909"
+        "https://api.breezometer.com/air-quality/v2/current-conditions?"
+        "features=breezometer_aqi,local_aqi,pollutants_concentrations,"
+        "all_pollutants_concentrations,pollutants_aqi_information&"
+        "key=aaBBccDD&lat=39.3939&lon=-109.10909&metadata=true"
     )
 
 
@@ -71,8 +71,8 @@ def test_air_quality_forecast_hourly():
     )
     assert len(responses.calls) == 1
     assert responses.calls[0].request.url == (
-        "https://api.breezometer.com/air-quality/v2/forecast/hourly"
-        "?hours=120&metadata=false&features=&key=aaBBccDD&lat=39.3939&lon=-109.10909"
+        "https://api.breezometer.com/air-quality/v2/forecast/hourly?"
+        "hours=120&key=aaBBccDD&lat=39.3939&lon=-109.10909&metadata=false"
     )
 
 
@@ -104,6 +104,6 @@ def test_historical_air_quality_hourly():
     assert len(responses.calls) == 1
     assert responses.calls[0].request.url == (
         "https://api.breezometer.com/air-quality/v2/historical/hourly?"
-        "datetime=2020-08-24T18:16:22+00:00&metadata=true&features=breezometer_aqi&"
-        "key=aaBBccDD&lat=39.3939&lon=-109.10909"
+        "datetime=2020-08-24T18:16:22+00:00&features=breezometer_aqi&"
+        "key=aaBBccDD&lat=39.3939&lon=-109.10909&metadata=true"
     )

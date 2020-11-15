@@ -32,13 +32,17 @@ def build_query_string(
     query.update(
         {
             "metadata": "true" if metadata else "false",
-            "features": ",".join(features),
             "key": api_key,
             "lat": latitude,
             "lon": longitude,
         }
     )
-    return "&".join(["{}={}".format(key, value) for key, value in query.items()])
+    if features:
+        query.update({"features": ",".join(features)})
+
+    return "&".join(
+        ["{}={}".format(key, value) for key, value in sorted(query.items())]
+    )
 
 
 def build_headers(latitude: float, longitude: float) -> Dict:

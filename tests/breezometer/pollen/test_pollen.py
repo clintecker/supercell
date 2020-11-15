@@ -32,6 +32,6 @@ def test_forecast_daily():
     assert len(responses.calls) == 1
     assert responses.calls[0].request.url == (
         "https://api.breezometer.com/pollen/v2/forecast/daily?"
-        "metadata=true&features=types_information,plants_information&"
-        "key=aaBBccDD&lat=39.3939&lon=-109.109109"
+        "features=types_information,plants_information&key=aaBBccDD&"
+        "lat=39.3939&lon=-109.109109&metadata=true"
     )

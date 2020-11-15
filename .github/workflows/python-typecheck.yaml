@@ -11,9 +11,5 @@ jobs:
         uses: actions/setup-python@v2
       - name: Install Tox and any other packages
         run: pip install tox
-      - uses: actions/cache@v2
-        with:
-          path: ~/.tox
-          key: ${{ env.pythonLocation}}-${{ hashFiles('tox.ini') }}-${{ hashFiles('setup.py') }}-${{ hashFiles('setup.cfg') }}
       - name: Type Checker (mypy)
         run: tox -e mypy

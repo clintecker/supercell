@@ -102,5 +102,5 @@ def get_station_weather(station_id: str, api_key: str) -> Observation:
         windspeed=weather_response.json()["observations"][0]["imperial"]["windSpeed"],
         pressure=weather_response.json()["observations"][0]["imperial"]["pressure"],
         windgust=weather_response.json()["observations"][0]["imperial"]["windGust"],
-        observed_at_str=weather_response.json()["observations"][0]["obsTimeUtc"],
+        observed_at_str=weather_response.json()["observations"][0]["obsTimeUtc"] + "Z",
     )

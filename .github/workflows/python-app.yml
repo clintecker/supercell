@@ -1,0 +1,24 @@
+name: Tests
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python: [3.7, 3.8, 3.9, "3.10.0-alpha.1"]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Install Tox and any other packages
+        run: pip install tox
+      - uses: actions/cache@v2
+        with:
+          path: ~/.tox
+          key: ${{ env.pythonLocation}}-${{ hashFiles('tox.ini') }}-${{ hashFiles('setup.py') }}-${{ hashFiles('setup.cfg') }}
+      - name: Run Tests
+        run: tox -e py

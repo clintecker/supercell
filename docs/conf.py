@@ -26,9 +26,9 @@ copyright = "2020 Clint Ecker"
 author = "Clint Ecker"
 
 # The short X.Y version
-version = "1.2.1"
+version = "1.3.0"
 # The full version, including alpha/beta/rc tags
-release = "1.2.1"
+release = "1.3.0"
 
 
 # -- General configuration ---------------------------------------------------

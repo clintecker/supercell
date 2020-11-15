@@ -14,7 +14,7 @@ import requests
 # Supercell Code
 from supercell.models import Forecast, Observation
 
-__version__ = "1.2.1"
+__version__ = "1.3.0"
 
 WEATHER_URL = (
     "https://api.weather.com/v2/pws/observations/current?stationId="

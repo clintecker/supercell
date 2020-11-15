@@ -13,7 +13,7 @@ from supercell.breezometer.utils import (
 
 def test_build_query_string():
     assert (
-        "hours=144&agency=EPA&metadata=true&features=one,two,three&key=aaAAbbBBccCC&lat=-109.109109&lon=39.3939"
+        "agency=EPA&features=one,two,three&hours=144&key=aaAAbbBBccCC&lat=-109.109109&lon=39.3939&metadata=true"
         == build_query_string(
             metadata=True,
             features=["one", "two", "three"],
@@ -26,7 +26,7 @@ def test_build_query_string():
     )
 
     assert (
-        "hours=144&agency=EPA&metadata=false&features=one,two,three&key=aaAAbbBBccCC&lat=-109.109109&lon=39.3939"
+        "agency=EPA&features=one,two,three&hours=144&key=aaAAbbBBccCC&lat=-109.109109&lon=39.3939&metadata=false"
         == build_query_string(
             metadata=False,
             features=["one", "two", "three"],
@@ -49,8 +49,9 @@ def test_build_headers():
 
 def test_build_uri():
     assert (
-        "https://api.breezometer.com/v5/examples/10232?hours=144&agency=BM&metadata=true&"
-        "features=one,two,three&key=aaAAbbBBccCC&lat=-109.109109&lon=39.3939"
+        "https://api.breezometer.com/v5/examples/10232?"
+        "agency=BM&features=one,two,three&hours=144&"
+        "key=aaAAbbBBccCC&lat=-109.109109&lon=39.3939&metadata=true"
     ) == build_uri(
         path="/v5/examples/10232",
         metadata=True,
@@ -81,8 +82,8 @@ def test_make_api_request_successful():
     )
     assert len(responses.calls) == 1
     assert responses.calls[0].request.url == (
-        "https://api.breezometer.com/v5/examples/10232?metadata=true&features=one,two,three"
-        "&key=aaAAbbBBccCC&lat=39.3939&lon=-109.109109"
+        "https://api.breezometer.com/v5/examples/10232?"
+        "features=one,two,three&key=aaAAbbBBccCC&lat=39.3939&lon=-109.109109&metadata=true"
     )
 
 
@@ -115,7 +116,7 @@ def test_make_api_request_server_error():
         == responses.calls[1].request.url
         == responses.calls[0].request.url
         == (
-            "https://api.breezometer.com/v5/examples/10232?metadata=true&features=one,two,three"
-            "&key=aaAAbbBBccCC&lat=39.3939&lon=-109.109109"
+            "https://api.breezometer.com/v5/examples/10232?"
+            "features=one,two,three&key=aaAAbbBBccCC&lat=39.3939&lon=-109.109109&metadata=true"
         )
     )

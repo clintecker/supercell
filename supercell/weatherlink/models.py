@@ -418,7 +418,7 @@ class StationObservation(object):
             self.observation_made_at.year,
             self.observation_made_at.month,
             self.observation_made_at.day)
-        self.identifier = identifier or random.getrandbits(60)
+        self.identifier = identifier or random.getrandbits(32)
 
     def lunation_text(self) -> str:
         return _lunation_text(self.lunation)

@@ -52,7 +52,7 @@ class Forecast(object):
         self.temperature_max = temperature_max and float(temperature_max) or None
         self.longitude = longitude
         self.latitude = latitude
-        self.identifier = identifier or random.getrandbits(60)
+        self.identifier = identifier or random.getrandbits(32)
 
     @property
     def forecast_made_date(self) -> datetime.date:
@@ -200,7 +200,7 @@ class Observation(object):
         self.latitude = float(latitude)
         self.longitude = float(longitude)
         self._observed_at = parse(observed_at_str)
-        self.identifier = identifier or random.getrandbits(60)
+        self.identifier = identifier or random.getrandbits(32)
 
     @property
     def observed_at_utc_offset_seconds(self) -> int:

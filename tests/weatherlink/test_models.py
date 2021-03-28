@@ -41,36 +41,6 @@ class SupercellWeatherlinkModelsTestSuite(unittest.TestCase):
         b"\xff"
     )
 
-    def test_get_phase_on_day(self):
-        self.assertEqual(
-            0.44898955299659066,
-            weatherlink.models.get_phase_on_day(year=2020, month=6, day=5),
-        )
-
-    def test__lunation_text(self):
-        t = [
-            (-0.56, None, ValueError),
-            (0.00, "New Moon (Waxing)", None),
-            (0.0494, "New Moon (Waxing)", None),
-            (0.0500, "Crescent (Waxing)", None),
-            (0.05001, "Crescent (Waxing)", None),
-            (0.15001, "First Quarter (Waxing)", None),
-            (0.50001, "Full Moon (Waning)", None),
-            (0.96, "New Moon (Waning)", None),
-            (1.00, "New Moon (Waning)", None),
-            (1.1, None, ValueError),
-        ]
-        for lunation, lunation_text, exc in t:
-            if lunation_text:
-                self.assertEqual(
-                    lunation_text,
-                    weatherlink.models._lunation_text(lunation),
-                    lunation,
-                )
-            elif exc:
-                with self.assertRaises(exc):
-                    weatherlink.models._lunation_text(lunation)
-
     def test__wind_direction_text(self):
         t = [
             (-34, None, ValueError),
@@ -186,8 +156,6 @@ class SupercellWeatherlinkModelsTestSuite(unittest.TestCase):
             identifier=1234,
         )
 
-        self.assertEqual("Gibbous (Waxing)", observation.lunation_text())
-
         self.assertEqual("S", observation.wind_direction_text())
 
         self.assertEqual("Rising Slowly", observation.bar_trend_text())
@@ -221,8 +189,6 @@ class SupercellWeatherlinkModelsTestSuite(unittest.TestCase):
                 "forecast_text": "Mostly clear with little temperature change.",
                 "sunrise": "05:34:00",
                 "sunset": "21:02:00",
-                "lunation": 0.4352677291810222,
-                "lunation_text": "Gibbous (Waxing)",
                 "observation_made_at": datetime.datetime(
                     2020, 5, 6, 12, 39, 23, 203, tzinfo=tzlocal()
                 ),
@@ -293,8 +259,6 @@ class SupercellWeatherlinkModelsTestSuite(unittest.TestCase):
                 " Windy with possible wind shift to the W NW or N.",
                 "sunrise": "05:35:00",
                 "sunset": "20:26:00",
-                "lunation": 0.9358583405191827,
-                "lunation_text": "Crescent (Waning)",
                 "observation_made_at": datetime.datetime(
                     2020, 1, 23, 12, 34, 11, tzinfo=tzlocal()
                 ),

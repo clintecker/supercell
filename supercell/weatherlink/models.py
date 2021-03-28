@@ -6,7 +6,6 @@ from typing import Dict, List, Optional
 # Third Party Code
 from bitstring import BitStream
 from dateutil.tz import tzlocal
-import ephem
 
 # Supercell Code
 from supercell.weatherlink.exceptions import BadCRC
@@ -350,15 +349,6 @@ def _forecast_icons_text(forecast_icons: int) -> List[str]:
     ]
 
 
-def get_phase_on_day(year: int, month: int, day: int) -> float:
-    """Returns a floating-point number from 0-1. where 0=new, 0.5=full, 1=new"""
-    date = ephem.Date(datetime.date(year, month, day))
-    nnm = ephem.next_new_moon(date)
-    pnm = ephem.previous_new_moon(date)
-    lunation = (date - pnm) / (nnm - pnm)
-    return lunation
-
-
 class StationObservation(object):
     """A station observation"""
     bar_trend: int
@@ -414,14 +404,7 @@ class StationObservation(object):
         self.sunrise = sunrise
         self.sunset = sunset
         self.observation_made_at = observation_made_at or datetime.datetime.now(tzlocal())
-        self.lunation = get_phase_on_day(
-            self.observation_made_at.year,
-            self.observation_made_at.month,
-            self.observation_made_at.day)
         self.identifier = identifier or random.getrandbits(32)
-
-    def lunation_text(self) -> str:
-        return _lunation_text(self.lunation)
 
     def wind_direction_text(self) -> str:
         """Produces a string description of the wind direction."""
@@ -460,8 +443,6 @@ class StationObservation(object):
             "forecast_text": self.forecast_text(),
             "sunrise": self.sunrise.isoformat(),
             "sunset": self.sunset.isoformat(),
-            "lunation": self.lunation,
-            "lunation_text": self.lunation_text(),
             "observation_made_at": self.observation_made_at,
             "identifier": self.identifier
         }

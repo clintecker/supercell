@@ -162,8 +162,8 @@ def full_day_images(
         pattern_string.format(
             yearone=year,
             yeartwo=year_two,
-            day_num=day_num,
-            prev_day_num=prev_day_num,
+            day_num=str(day_num).zfill(3),
+            prev_day_num=str(prev_day_num).zfill(3),
             sat_num=sat_num,
             sector=sector,
             band=band,

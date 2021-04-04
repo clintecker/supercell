@@ -119,23 +119,23 @@ class SupercellGoesTestSuite(unittest.TestCase):
 <body>
 <h1>Index of /cdn02/GOES/data/GOES16/ABI/SECTOR/yy/GEOCOLOR/</h1><hr><pre><a href="../">../</a>
 <a href="1200x1200.jpg">1200x1200.jpg</a>                                      01-Jun-2020 20:03             1227726
-<a href="202012001_GOES16-ABI-yy-GEOCOLOR-1200x1200.jpg">202012001_GOES16-ABI-yy-GEOCOLOR-1200x1200.jpg</a>
+<a href="202012001_GOES16-ABI-yy-GEOCOLOR-1200x1200.jpg">20200012001_GOES16-ABI-yy-GEOCOLOR-1200x1200.jpg</a>
    28-May-2020 20:07             1313965
-<a href="202012001_GOES16-ABI-yy-GEOCOLOR-2400x2400.jpg">202012001_GOES16-ABI-yy-GEOCOLOR-2400x2400.jpg</a>
+<a href="202012001_GOES16-ABI-yy-GEOCOLOR-2400x2400.jpg">20200012001_GOES16-ABI-yy-GEOCOLOR-2400x2400.jpg</a>
    28-May-2020 20:07             4457998
-<a href="202012001_GOES16-ABI-yy-GEOCOLOR-300x300.jpg">202012001_GOES16-ABI-yy-GEOCOLOR-300x300.jpg</a>
+<a href="202012001_GOES16-ABI-yy-GEOCOLOR-300x300.jpg">20200012001_GOES16-ABI-yy-GEOCOLOR-300x300.jpg</a>
   28-May-2020 20:07              105850
-<a href="20193662001_GOES16-ABI-yy-GEOCOLOR-600x600.jpg">202012001_GOES16-ABI-yy-GEOCOLOR-600x600.jpg</a>
+<a href="20193662001_GOES16-ABI-yy-GEOCOLOR-600x600.jpg">20200012001_GOES16-ABI-yy-GEOCOLOR-600x600.jpg</a>
   28-May-2020 20:07              378507
-<a href="20193662306_GOES16-ABI-yy-GEOCOLOR-1200x1200.jpg">202012006_GOES16-ABI-yy-GEOCOLOR-1200x1200.jpg</a>
+<a href="20193662306_GOES16-ABI-yy-GEOCOLOR-1200x1200.jpg">20200012006_GOES16-ABI-yy-GEOCOLOR-1200x1200.jpg</a>
    28-May-2020 20:11             1316732
-<a href="20193662306_GOES16-ABI-yy-GEOCOLOR-2400x2400.jpg">202012006_GOES16-ABI-yy-GEOCOLOR-2400x2400.jpg</a>
+<a href="20193662306_GOES16-ABI-yy-GEOCOLOR-2400x2400.jpg">20200012006_GOES16-ABI-yy-GEOCOLOR-2400x2400.jpg</a>
    28-May-2020 20:11             4470444
-<a href="20193662306_GOES16-ABI-yy-GEOCOLOR-300x300.jpg">202012006_GOES16-ABI-yy-GEOCOLOR-300x300.jpg</a>
+<a href="20193662306_GOES16-ABI-yy-GEOCOLOR-300x300.jpg">20200012006_GOES16-ABI-yy-GEOCOLOR-300x300.jpg</a>
   28-May-2020 20:11              106199
-<a href="20193662006_GOES16-ABI-yy-GEOCOLOR-600x600.jpg">202012006_GOES16-ABI-yy-GEOCOLOR-600x600.jpg</a>
+<a href="20193662006_GOES16-ABI-yy-GEOCOLOR-600x600.jpg">20200012006_GOES16-ABI-yy-GEOCOLOR-600x600.jpg</a>
   28-May-2020 20:11              379714
-<a href="20193662311_GOES16-ABI-yy-GEOCOLOR-1200x1200.jpg">202012011_GOES16-ABI-yy-GEOCOLOR-1200x1200.jpg</a>
+<a href="20193662311_GOES16-ABI-yy-GEOCOLOR-1200x1200.jpg">20200012011_GOES16-ABI-yy-GEOCOLOR-1200x1200.jpg</a>
    28-May-2020 20:16             1320366
 <a href="2400x2400.jpg">2400x2400.jpg</a>                                      01-Jun-2020 20:03             4124628
 <a href="600x600.jpg">600x600.jpg</a>                                        01-Jun-2020 20:03              361617
@@ -207,11 +207,11 @@ class SupercellGoesTestSuite(unittest.TestCase):
                 "GEOCOLOR-1200x1200.jpg",
                 "https://cdn.star.nesdis.noaa.gov/GOES16/ABI/SECTOR/yy/GEOCOLOR/20193662311_GOES16-ABI-yy-"
                 "GEOCOLOR-1200x1200.jpg",
-                "https://cdn.star.nesdis.noaa.gov/GOES16/ABI/SECTOR/yy/GEOCOLOR/202012001_GOES16-ABI-yy-"
+                "https://cdn.star.nesdis.noaa.gov/GOES16/ABI/SECTOR/yy/GEOCOLOR/20200012001_GOES16-ABI-yy-"
                 "GEOCOLOR-1200x1200.jpg",
-                "https://cdn.star.nesdis.noaa.gov/GOES16/ABI/SECTOR/yy/GEOCOLOR/202012006_GOES16-ABI-yy-"
+                "https://cdn.star.nesdis.noaa.gov/GOES16/ABI/SECTOR/yy/GEOCOLOR/20200012006_GOES16-ABI-yy-"
                 "GEOCOLOR-1200x1200.jpg",
-                "https://cdn.star.nesdis.noaa.gov/GOES16/ABI/SECTOR/yy/GEOCOLOR/202012011_GOES16-ABI-yy-"
+                "https://cdn.star.nesdis.noaa.gov/GOES16/ABI/SECTOR/yy/GEOCOLOR/20200012011_GOES16-ABI-yy-"
                 "GEOCOLOR-1200x1200.jpg",
             ],
             u,

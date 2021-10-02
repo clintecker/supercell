@@ -16,3 +16,4 @@ build
 .vscode
 cov.xml
 cov.xml
+.DS_Store
